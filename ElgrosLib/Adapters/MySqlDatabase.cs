@@ -9,7 +9,7 @@ namespace ElgrosLib.Adapters
 {
     internal class MySqlDatabase : Database
     {
-        private readonly MySqlConnection _mySqlConnection;
+        //private readonly MySqlConnection _mySqlConnection;
 
         public MySqlDatabase(IConfiguration configuration, string databaseName) : base(configuration, databaseName)
         {
