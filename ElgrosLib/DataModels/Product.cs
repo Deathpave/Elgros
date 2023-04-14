@@ -11,7 +11,7 @@
         private int _subCategoryId;
 
         public string Name { get { return _name; } }
-        public string Description { get { return _description } }
+        public string Description { get { return _description; } }
         public double Price { get { return _price; } }
         public double Quantity { get { return _quantity; } }
         public string PhotoUrl { get { return _photoUrl; } }
