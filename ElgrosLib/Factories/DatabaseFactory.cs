@@ -7,9 +7,8 @@ namespace ElgrosLib.Factories
     /// <summary>
     /// Factory that handles the creation of IDatabase objects
     /// </summary>
-    public class DatabaseFactory
+    public static class DatabaseFactory
     {
-        #region Create Database
         /// <summary>
         /// Creates a database instance
         /// </summary>
@@ -28,6 +27,5 @@ namespace ElgrosLib.Factories
             }
             return database;
         }
-        #endregion
     }
 }

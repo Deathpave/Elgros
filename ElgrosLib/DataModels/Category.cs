@@ -1,6 +1,6 @@
 ﻿namespace ElgrosLib.DataModels
 {
-    internal class Category : BaseEntity
+    public class Category : BaseEntity
     {
         private string _name;
 
