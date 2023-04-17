@@ -1,33 +1,41 @@
 ﻿using ElgrosLib.DataModels;
 using ElgrosLib.Interfaces;
+using ElgrosLib.Repositories;
 
 namespace ElgrosLib.Managers
 {
     internal class SubCategoryManager : ISubCategoryManager
     {
+        private readonly SubCategoryRepository _repository;
+
+        public SubCategoryManager(IDatabase database)
+        {
+            _repository = new SubCategoryRepository(database);
+        }
+
         public Task<bool> CreateAsync(SubCategory createEntity)
         {
-            throw new NotImplementedException();
+            return _repository.CreateAsync(createEntity);
         }
 
         public Task<bool> DeleteAsync(SubCategory deleteEntity)
         {
-            throw new NotImplementedException();
+            return _repository.DeleteAsync(deleteEntity);
         }
 
         public Task<IEnumerable<SubCategory>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return _repository.GetAllAsync();
         }
 
         public Task<SubCategory> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetByIdAsync(id);
         }
 
         public Task<bool> UpdateAsync(SubCategory updateEntity)
         {
-            throw new NotImplementedException();
+            return _repository.UpdateAsync(updateEntity);
         }
     }
 }
