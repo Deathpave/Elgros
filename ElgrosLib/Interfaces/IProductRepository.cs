@@ -38,7 +38,7 @@ namespace ElgrosLib.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<Product> GetByIdAsync(long id);
+        public Task<Product> GetByIdAsync(int id);
 
         /// <summary>
         /// Updates a product

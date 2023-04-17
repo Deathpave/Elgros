@@ -20,7 +20,7 @@ namespace ElgrosLib.Managers
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetByIdAsync(long id)
+        public Task<Product> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
