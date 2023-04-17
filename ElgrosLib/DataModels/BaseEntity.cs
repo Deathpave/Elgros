@@ -5,10 +5,10 @@
     /// </summary>
     public abstract class BaseEntity
     {
-        private long _id;
-        public long Id { get { return _id; } }
+        private int _id;
+        public int Id { get { return _id; } }
 
-        public BaseEntity(long id)
+        public BaseEntity(int id)
         {
             _id = id;
         }

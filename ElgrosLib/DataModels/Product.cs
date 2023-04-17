@@ -18,7 +18,7 @@
         public int CategoryId { get { return _categoryId; } }
         public int SubCategoryId { get { return _subCategoryId; } }
 
-        internal Product(long id, string name, string description, double price, double quantity, string photoUrl, int categoryId, int subCategoryId) : base(id)
+        internal Product(int id, string name, string description, double price, double quantity, string photoUrl, int categoryId, int subCategoryId) : base(id)
         {
             _name = name;
             _description = description;
