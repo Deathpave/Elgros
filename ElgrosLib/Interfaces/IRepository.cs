@@ -27,7 +27,7 @@ namespace ElgrosLib.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<T> GetByIdAsync(long id);
+        Task<T> GetByIdAsync(int id);
 
         /// <summary>
         /// Generic ReadAll CRUD operation

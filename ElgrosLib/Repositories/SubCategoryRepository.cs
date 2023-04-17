@@ -1,31 +1,31 @@
 ﻿using ElgrosLib.DataModels;
 using ElgrosLib.Interfaces;
 
-namespace ElgrosLib.Managers
+namespace ElgrosLib.Repositories
 {
-    internal class CategoryManager : ICategoryManager
+    internal class SubCategoryRepository : IRepository<SubCategory>
     {
-        public Task<bool> CreateAsync(Product createEntity)
+        public Task<bool> CreateAsync(SubCategory createEntity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Product deleteEntity)
+        public Task<bool> DeleteAsync(SubCategory deleteEntity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Product>> GetAllAsync()
+        public Task<IEnumerable<SubCategory>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetByIdAsync(int id)
+        public Task<SubCategory> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(Product updateEntity)
+        public Task<bool> UpdateAsync(SubCategory updateEntity)
         {
             throw new NotImplementedException();
         }
