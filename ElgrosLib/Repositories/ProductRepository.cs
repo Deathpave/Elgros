@@ -1,5 +1,4 @@
-﻿using ElgrosLib.Adapters;
-using ElgrosLib.DataModels;
+﻿using ElgrosLib.DataModels;
 using ElgrosLib.Interfaces;
 using System.Data;
 using System.Data.Common;
