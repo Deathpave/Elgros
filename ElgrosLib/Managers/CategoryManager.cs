@@ -1,33 +1,41 @@
 ﻿using ElgrosLib.DataModels;
 using ElgrosLib.Interfaces;
+using ElgrosLib.Repositories;
 
 namespace ElgrosLib.Managers
 {
     internal class CategoryManager : ICategoryManager
     {
-        public Task<bool> CreateAsync(Product createEntity)
+        private readonly CategoryRepository _repository;
+
+        public CategoryManager(IDatabase database)
         {
-            throw new NotImplementedException();
+            _repository = new CategoryRepository(database);
         }
 
-        public Task<bool> DeleteAsync(Product deleteEntity)
+        public Task<bool> CreateAsync(Category createEntity)
         {
-            throw new NotImplementedException();
+            return _repository.CreateAsync(createEntity);
         }
 
-        public Task<IEnumerable<Product>> GetAllAsync()
+        public Task<bool> DeleteAsync(Category deleteEntity)
         {
-            throw new NotImplementedException();
+            return _repository.DeleteAsync(deleteEntity);
         }
 
-        public Task<Product> GetByIdAsync(int id)
+        public Task<IEnumerable<Category>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return _repository.GetAllAsync();
         }
 
-        public Task<bool> UpdateAsync(Product updateEntity)
+        public Task<Category> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetByIdAsync(id);
+        }
+
+        public Task<bool> UpdateAsync(Category updateEntity)
+        {
+            return _repository.UpdateAsync(updateEntity);
         }
     }
 }

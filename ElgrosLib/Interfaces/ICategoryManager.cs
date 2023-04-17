@@ -10,7 +10,7 @@ namespace ElgrosLib.Interfaces
         /// <param name="createEntity"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> CreateAsync(Product createEntity);
+        public Task<bool> CreateAsync(Category createEntity);
 
         /// <summary>
         /// Deletes a category from the database
@@ -18,14 +18,14 @@ namespace ElgrosLib.Interfaces
         /// <param name="deleteEntity"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> DeleteAsync(Product deleteEntity);
+        public Task<bool> DeleteAsync(Category deleteEntity);
 
         /// <summary>
         /// Gets all categorys
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<IEnumerable<Product>> GetAllAsync();
+        public Task<IEnumerable<Category>> GetAllAsync();
 
         /// <summary>
         /// Gets a category by id
@@ -33,7 +33,7 @@ namespace ElgrosLib.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<Product> GetByIdAsync(int id);
+        public Task<Category> GetByIdAsync(int id);
 
         /// <summary>
         /// Updates a category
@@ -41,6 +41,6 @@ namespace ElgrosLib.Interfaces
         /// <param name="updateEntity"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> UpdateAsync(Product updateEntity);
+        public Task<bool> UpdateAsync(Category updateEntity);
     }
 }

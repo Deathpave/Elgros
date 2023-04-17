@@ -29,7 +29,7 @@ namespace ElgrosLib.Repositories
         {
             int affectedRows = 0;
 
-            // Creates dbcommand with parameters
+            // Create dbcommand with parameters
             DbCommand command = new SqlCommand("spCreateProduct");
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
@@ -69,7 +69,7 @@ namespace ElgrosLib.Repositories
         {
             int affectedRows = 0;
 
-            // Creates dbcommand
+            // Create dbcommand
             DbCommand command = new SqlCommand("spDeleteProduct");
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
@@ -100,11 +100,12 @@ namespace ElgrosLib.Repositories
         {
             List<Product> products = new List<Product>();
 
+            // Create dbcommand
             DbCommand command = new SqlCommand("spGetAllProducts");
             command.CommandType = CommandType.StoredProcedure;
 
+            // Get datareader with result from dbcommand
             using var dataReader = await _database.ExecuteQueryAsync(command);
-
             if (dataReader.HasRows == false)
             {
                 await _database.CloseConnectionAsync();
@@ -131,10 +132,9 @@ namespace ElgrosLib.Repositories
         /// <exception cref="NotImplementedException"></exception>
         public async Task<Product> GetByIdAsync(int id)
         {
-            // Creates db command
+            // Create dbcommand
             DbCommand command = new SqlCommand("spGetProductById");
             command.CommandType = CommandType.StoredProcedure;
-
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
                 {"@productId",id}
@@ -170,7 +170,7 @@ namespace ElgrosLib.Repositories
         {
             int affectedRows = 0;
 
-            // Creates dbcommand with parameters
+            // Create dbcommand
             DbCommand command = new SqlCommand("spUpdateProduct");
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
