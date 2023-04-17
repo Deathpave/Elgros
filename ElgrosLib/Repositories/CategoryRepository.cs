@@ -5,27 +5,27 @@ namespace ElgrosLib.Repositories
 {
     internal class CategoryRepository : ICategoryRepository
     {
-        public Task<bool> CreateAsync(Product createEntity)
+        public Task<bool> CreateAsync(Category createEntity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Product deleteEntity)
+        public Task<bool> DeleteAsync(Category deleteEntity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Product>> GetAllAsync()
+        public Task<IEnumerable<Category>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetByIdAsync(int id)
+        public Task<Category> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(Product updateEntity)
+        public Task<bool> UpdateAsync(Category updateEntity)
         {
             throw new NotImplementedException();
         }
