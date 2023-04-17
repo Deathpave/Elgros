@@ -1,33 +1,41 @@
 ﻿using ElgrosLib.DataModels;
 using ElgrosLib.Interfaces;
+using ElgrosLib.Repositories;
 
 namespace ElgrosLib.Managers
 {
     public class ProductManager : IProductManager
     {
+        private readonly ProductRepository _repository;
+
+        public ProductManager(IDatabase database)
+        {
+            _repository = new ProductRepository(database);
+        }
+
         public Task<bool> CreateAsync(Product createEntity)
         {
-            throw new NotImplementedException();
+            return _repository.CreateAsync(createEntity);
         }
 
         public Task<bool> DeleteAsync(Product deleteEntity)
         {
-            throw new NotImplementedException();
+            return _repository.DeleteAsync(deleteEntity);
         }
 
         public Task<IEnumerable<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return _repository.GetAllAsync();
         }
 
         public Task<Product> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return _repository.GetByIdAsync(id);
         }
 
         public Task<bool> UpdateAsync(Product updateEntity)
         {
-            throw new NotImplementedException();
+            return _repository.UpdateAsync(updateEntity);
         }
     }
 }
