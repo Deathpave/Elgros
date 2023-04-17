@@ -20,7 +20,7 @@ namespace ElgrosLib.Repositories
 
         public Task<bool> DeleteAsync(Product deleteEntity)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException()
         }
 
         public Task<IEnumerable<Product>> GetAllAsync()
