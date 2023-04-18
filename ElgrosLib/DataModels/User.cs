@@ -20,7 +20,7 @@
         public string City { get { return _city; } }
         public string Phone { get { return _phone; } }
 
-        public User(int id, string authenticationString, string name, string lastName, string email, string address, string zipcode, string city, string phone) : base(id)
+        internal User(int id, string authenticationString, string name, string lastName, string email, string address, string zipcode, string city, string phone) : base(id)
         {
             _authenticationString = authenticationString;
             _name = name;

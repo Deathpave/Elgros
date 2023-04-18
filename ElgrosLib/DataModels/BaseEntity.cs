@@ -8,7 +8,7 @@
         private int _id;
         public int Id { get { return _id; } }
 
-        public BaseEntity(int id)
+        internal BaseEntity(int id)
         {
             _id = id;
         }
