@@ -4,9 +4,8 @@ namespace Elgros.Models
 {
     public class ProductModel
     {
-        public List<Product> Products { get; set; }
-
-        ProductModel(List<Product> products)
+        public IEnumerable<Product> Products { get; set; }
+        public ProductModel(IEnumerable<Product> products)
         {
             Products = products;    
         }
