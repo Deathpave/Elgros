@@ -9,6 +9,7 @@ USE elgrosdb;
 DROP TABLE IF EXISTS `products`;
 DROP TABLE IF EXISTS `categories`;
 DROP TABLE IF EXISTS `subCategories`;
+DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `logs`;
 DROP TABLE IF EXISTS `logTypes`;
 
@@ -29,6 +30,13 @@ CREATE TABLE `subCategories` (
 PRIMARY KEY (id),
 FOREIGN KEY (categoryId) REFERENCES categories (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `users` 
+( 
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+`username` VARCHAR(255) NOT NULL , 
+`password` VARCHAR(255) NOT NULL
+) ;
 
 CREATE TABLE `products` (
   `id` INT NOT NULL AUTO_INCREMENT,

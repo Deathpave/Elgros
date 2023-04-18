@@ -217,6 +217,75 @@ BEGIN
 END //
 DELIMITER ;
 
+/*####################################################
+			## User Section ##
+####################################################*/
+DROP PROCEDURE IF EXISTS `spCreateUser`;
+DROP PROCEDURE IF EXISTS `spUpdateUser`;
+DROP PROCEDURE IF EXISTS `spDeleteUser`;
+DROP PROCEDURE IF EXISTS `spGetUserById`;
+DROP PROCEDURE IF EXISTS `spGetAllUsers`;
+
+-- Create operation
+DELIMITER //
+CREATE PROCEDURE `spCreateUser` (IN UserId INT, IN username VARCHAR(255), IN password VARCHAR(255))
+BEGIN
+	IF(UserId IS NOT NULL OR 0) 
+    THEN
+		INSERT INTO Users (id, username, password) 
+		VALUES (UserId, username, password);
+    ELSE
+		INSERT INTO Users (username, password) 
+		VALUES (username, password);
+	END IF;   
+END //
+DELIMITER ;
+
+-- Read operation
+DELIMITER //
+CREATE PROCEDURE `spGetUserById` (IN UserId INT)
+BEGIN
+	SELECT * FROM Users 
+    WHERE id = UserId;
+END //
+DELIMITER ;
+
+-- Read operation
+DELIMITER //
+CREATE PROCEDURE `spGetUserByName` (IN UserName VARCHAR(255))
+BEGIN
+	SELECT * FROM Users
+    WHERE username = UserName;
+END //
+DELIMITER;
+
+-- Read all operation
+DELIMITER //
+CREATE PROCEDURE `spGetAllUsers` ()
+BEGIN
+	SELECT * FROM Users;
+END //
+DELIMITER ;
+
+-- Update operation
+DELIMITER //
+CREATE PROCEDURE `spUpdateUser` (IN UserId INT, IN newUsername VARCHAR(255), IN newPassword VARCHAR(255))
+BEGIN
+	UPDATE Users SET 
+    username = newUsername, 
+    password = newPassword 
+    WHERE id = UserId;
+END //
+DELIMITER ;
+
+-- Delete operation
+DELIMITER //
+CREATE PROCEDURE `spDeleteUser` (IN UserId INT)
+BEGIN
+	DELETE FROM Users WHERE id = UserId;
+END //
+DELIMITER ;
+
 
 /*####################################################
 			## Log Section ##
