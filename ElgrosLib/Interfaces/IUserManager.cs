@@ -2,45 +2,45 @@
 
 namespace ElgrosLib.Interfaces
 {
-    internal interface IProductRepository : IRepository<Product>
+    public interface IUserManager
     {
         /// <summary>
-        /// Adds a new product to the database
+        /// Adds a new user to the database
         /// </summary>
         /// <param name="createEntity"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> CreateAsync(Product createEntity);
+        public Task<bool> CreateAsync(User createEntity);
 
         /// <summary>
-        /// Deletes a product from the database
+        /// Deletes a user from the database
         /// </summary>
         /// <param name="deleteEntity"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> DeleteAsync(Product deleteEntity);
+        public Task<bool> DeleteAsync(User deleteEntity);
 
         /// <summary>
-        /// Gets all products
+        /// Gets all users
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<IEnumerable<Product>> GetAllAsync();
+        public Task<IEnumerable<User>> GetAllAsync();
 
         /// <summary>
-        /// Gets a product by id
+        /// Gets a user by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<Product> GetByIdAsync(int id);
+        public Task<User> GetByIdAsync(int id);
 
         /// <summary>
-        /// Updates a product
+        /// Updates a user
         /// </summary>
         /// <param name="updateEntity"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> UpdateAsync(Product updateEntity);
+        public Task<bool> UpdateAsync(User updateEntity);
     }
 }
