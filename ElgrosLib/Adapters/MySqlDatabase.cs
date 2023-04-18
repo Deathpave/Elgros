@@ -9,61 +9,9 @@ namespace ElgrosLib.Adapters
 {
     internal class MySqlDatabase : Database
     {
-        //private readonly MySqlConnection _mySqlConnection;
-
         public MySqlDatabase(IConfiguration configuration, string databaseName) : base(configuration, databaseName)
         {
             base.Connection = new MySqlConnection(configuration.GetConnectionString("DefaultConnection"));
-            // Creating our database connection
-            //_mySqlConnection = new MySqlConnection(configuration.GetConnectionString("DefaultConnection"));
-        }
-
-        /// <summary>
-        /// Opens the database connection
-        /// </summary>
-        /// <returns>True or False</returns>
-        public override async Task<bool> OpenConnectionAsync()
-        {
-            try
-            {
-                if (base.Connection.State == ConnectionState.Open)
-                {
-                    return await Task.FromResult(true);
-                }
-
-                base.Connection.Open();
-                return await Task.FromResult(true);
-            }
-            catch (Exception e)
-            {
-                LogFactory.CreateLog(LogTypes.File, $"Failed to open database connection due to {e.Message}", MessageTypes.Error).WriteLog();
-                return await Task.FromResult(false);
-            }
-
-        }
-
-        /// <summary>
-        /// Closes the database connection
-        /// </summary>
-        /// <returns>True or False</returns>
-        public override async Task<bool> CloseConnectionAsync()
-        {
-            try
-            {
-                if (base.Connection.State == ConnectionState.Closed)
-                {
-                    return await Task.FromResult(true);
-                }
-
-                base.Connection.Close();
-                return await Task.FromResult(true);
-
-            }
-            catch (Exception e)
-            {
-                LogFactory.CreateLog(LogTypes.File, $"Failed to close database connection due to {e.Message}", MessageTypes.Error).WriteLog();
-                return await Task.FromResult(false);
-            }
         }
 
         /// <summary>

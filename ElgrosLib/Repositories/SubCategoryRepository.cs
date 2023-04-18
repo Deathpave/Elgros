@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace ElgrosLib.Repositories
 {
-    internal class SubCategoryRepository : IRepository<SubCategory>
+    internal class SubCategoryRepository : ISubCategoryRepository
     {
         private readonly IDatabase _database;
 
