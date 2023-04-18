@@ -7,6 +7,12 @@ namespace ElgrosLib.Security
 {
     internal class Decryption
     {
+        /// <summary>
+        /// Returns decrypted string
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="encodingPassword"></param>
+        /// <returns></returns>
         public string DecryptString(string input, string encodingPassword)
         {
             // Check for null or empty inputs
@@ -29,7 +35,7 @@ namespace ElgrosLib.Security
             aes.Key = rfc.GetBytes(32);
             aes.IV = rfc.GetBytes(16);
 
-            // Create streams for encryption
+            // Create streams for decryption
             MemoryStream memoryStream = new MemoryStream();
             CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Write);
 
@@ -39,7 +45,7 @@ namespace ElgrosLib.Security
             cryptoStream.FlushFinalBlock();
             cryptoStream.Close();
 
-            // Convert encrypted bytes to base64 string
+            // Convert bytes to base64 string
             string result = Convert.ToBase64String(memoryStream.ToArray());
             return result;
         }
