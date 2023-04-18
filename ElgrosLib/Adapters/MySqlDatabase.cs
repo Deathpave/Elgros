@@ -9,13 +9,9 @@ namespace ElgrosLib.Adapters
 {
     internal class MySqlDatabase : Database
     {
-        //private readonly MySqlConnection _mySqlConnection;
-
         public MySqlDatabase(IConfiguration configuration, string databaseName) : base(configuration, databaseName)
         {
             base.Connection = new MySqlConnection(configuration.GetConnectionString("DefaultConnection"));
-            // Creating our database connection
-            //_mySqlConnection = new MySqlConnection(configuration.GetConnectionString("DefaultConnection"));
         }
 
         /// <summary>
