@@ -29,6 +29,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
+                {"@authenticationString",createEntity.AuthenticationString},
                 {"@name",createEntity.Name},
                 {"@lastName",createEntity.LastName},
                 {"@email",createEntity.Email},
