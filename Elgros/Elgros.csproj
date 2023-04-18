@@ -19,4 +19,8 @@
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ElgrosLib\ElgrosLib.csproj" />
+  </ItemGroup>
+
 </Project>
