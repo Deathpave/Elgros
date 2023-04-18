@@ -11,16 +11,16 @@ namespace ElgrosLib.Security
         /// Returns decrypted string
         /// </summary>
         /// <param name="input"></param>
-        /// <param name="encodingPassword"></param>
+        /// <param name="decodingPassword"></param>
         /// <returns></returns>
-        public string DecryptString(string input, string encodingPassword)
+        public string DecryptString(string input, string decodingPassword)
         {
             // Check for null or empty inputs
             if (string.IsNullOrEmpty(input))
             {
                 LogFactory.CreateLog(LogTypes.Console, "Input string was null or empty", MessageTypes.Error).WriteLog();
             }
-            if (string.IsNullOrEmpty(encodingPassword))
+            if (string.IsNullOrEmpty(decodingPassword))
             {
                 LogFactory.CreateLog(LogTypes.Console, "Encoding password was null or empty", MessageTypes.Error).WriteLog();
             }
@@ -28,7 +28,7 @@ namespace ElgrosLib.Security
             // input bytes as salt
             byte[] salt = Encoding.UTF8.GetBytes(input);
             // Key and vector generator
-            Rfc2898DeriveBytes rfc = new Rfc2898DeriveBytes(encodingPassword, salt);
+            Rfc2898DeriveBytes rfc = new Rfc2898DeriveBytes(decodingPassword, salt);
 
             // Create the Aes for encryptin
             Aes aes = Aes.Create();
