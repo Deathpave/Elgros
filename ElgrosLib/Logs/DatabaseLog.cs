@@ -16,7 +16,7 @@ namespace ElgrosLib.Logs
         public MessageTypes MessageType { get { return _messageType; } }
         public DateTime TimeStamp { get { return _date; } }
 
-        public DatabaseLog(long id, MessageTypes messageType, string message, DateTime date) : base(id)
+        public DatabaseLog(int id, MessageTypes messageType, string message, DateTime date) : base(id)
         {
             _message = message;
             _messageType = messageType;
