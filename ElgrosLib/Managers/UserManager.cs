@@ -1,7 +1,9 @@
 ﻿using ElgrosLib.DataModels;
 using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
+using ElgrosLib.Logs;
 using ElgrosLib.Repositories;
+using ElgrosLib.Security;
 
 namespace ElgrosLib.Managers
 {
@@ -14,9 +16,33 @@ namespace ElgrosLib.Managers
             _repository = new UserRepository(database);
         }
 
+        public async Task<int> CheckLogin(string username, string password)
+        {
+            Encryption encryption = new Encryption();
+            User user = _repository.GetByNameAsync(encryption.EncryptString(username, username)).Result;
+            if (user != null)
+            {
+                if (user.Password == new Hashing().Sha256Hash(encryption.EncryptString(password, password)))
+                {
+                    return await Task.FromResult(user.Id);
+                }
+                else
+                {
+                    LogFactory.CreateLog(LogTypes.Database, $"Failed login with username {username}", MessageTypes.Error);
+                    return await Task.FromResult(-1);
+                }
+            }
+            else
+            {
+                return await Task.FromResult(-1);
+            }
+        }
+
         public User ConvertToUser(string username, string password)
         {
-            return UserFactory.CreateUser(username, password);
+            Encryption encryption = new Encryption();
+            User user = UserFactory.CreateUser(encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
+            return user;
         }
 
         public Task<bool> CreateAsync(User createEntity)
@@ -31,12 +57,12 @@ namespace ElgrosLib.Managers
 
         public Task<IEnumerable<User>> GetAllAsync()
         {
-            return _repository.GetAllAsync();
+            return null;
         }
 
         public Task<User> GetByIdAsync(int id)
         {
-            return _repository.GetByIdAsync(id);
+            return null;
         }
 
         public Task<bool> UpdateAsync(User updateEntity)
