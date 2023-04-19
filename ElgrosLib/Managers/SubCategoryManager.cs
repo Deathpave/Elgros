@@ -5,7 +5,7 @@ using ElgrosLib.Repositories;
 
 namespace ElgrosLib.Managers
 {
-    internal class SubCategoryManager : ISubCategoryManager
+    public class SubCategoryManager : ISubCategoryManager
     {
         private readonly SubCategoryRepository _repository;
 

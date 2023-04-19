@@ -5,7 +5,7 @@ using ElgrosLib.Repositories;
 
 namespace ElgrosLib.Managers
 {
-    internal class UserManager : IUserManager
+    public class UserManager : IUserManager
     {
         private readonly UserRepository _repository;
 
