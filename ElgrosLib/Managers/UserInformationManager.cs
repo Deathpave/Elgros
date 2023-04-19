@@ -1,6 +1,8 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Repositories;
+using Org.BouncyCastle.Tls;
 
 namespace ElgrosLib.Managers
 {
@@ -11,6 +13,11 @@ namespace ElgrosLib.Managers
         public UserInformationManager(IDatabase database)
         {
             _repository = new UserInformationRepository(database);
+        }
+
+        public UserInformation ConvertToUserInformation(int userId, string name, string lastname, string email, string address, string zipcode, string city, string phone)
+        {
+            return UserInformationFactory.CreateUserInformation(userId, name, lastname, email, address, zipcode, city, phone);
         }
 
         public Task<bool> CreateAsync(UserInformation createEntity)

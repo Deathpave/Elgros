@@ -1,4 +1,5 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Repositories;
 
@@ -11,6 +12,11 @@ namespace ElgrosLib.Managers
         public CategoryManager(IDatabase database)
         {
             _repository = new CategoryRepository(database);
+        }
+
+        public Category ConvertToCategory(string name)
+        {
+            return CategoryFactory.CreateCategory(name);
         }
 
         public Task<bool> CreateAsync(Category createEntity)

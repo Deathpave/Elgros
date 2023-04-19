@@ -1,4 +1,5 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Repositories;
 
@@ -11,6 +12,11 @@ namespace ElgrosLib.Managers
         public UserManager(IDatabase database)
         {
             _repository = new UserRepository(database);
+        }
+
+        public User ConvertToUser(string username, string password)
+        {
+            return UserFactory.CreateUser(username, password);
         }
 
         public Task<bool> CreateAsync(User createEntity)
