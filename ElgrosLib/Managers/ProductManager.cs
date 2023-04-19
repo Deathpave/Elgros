@@ -1,4 +1,5 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Repositories;
 
@@ -11,6 +12,11 @@ namespace ElgrosLib.Managers
         public ProductManager(IDatabase database)
         {
             _repository = new ProductRepository(database);
+        }
+
+        public Product ConvertToProduct(string name, string description, double price, double quantity, string photoUrl, int categoryId, int subCategoryId)
+        {
+            return ProductFactory.CreateProduct(name, description, price, quantity, photoUrl, categoryId, subCategoryId);
         }
 
         public Task<bool> CreateAsync(Product createEntity)
