@@ -12,9 +12,9 @@ namespace ElgrosLib.Factories
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static User CreateUser(string authenticationString, string name, string lastName, string email, string address, string zipcode, string city, string phone)
+        public static User CreateUser(int id, string username, string password)
         {
-            return new User(0, authenticationString, name, lastName, email, address, zipcode, city, phone);
+            return new User(id, username, password);
         }
     }
 }

@@ -29,14 +29,8 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@authenticationString",createEntity.AuthenticationString},
-                {"@name",createEntity.Name},
-                {"@lastName",createEntity.LastName},
-                {"@email",createEntity.Email},
-                {"@address",createEntity.Address},
-                {"@zipcode",createEntity.Zipcode},
-                {"@city",createEntity.City},
-                {"@phone",createEntity.Phone},
+                {"@username",createEntity.Username},
+                {"@password",createEntity.Password}
             };
 
             // Get datareader with result from the dbcommand
@@ -112,9 +106,7 @@ namespace ElgrosLib.Repositories
                 while (await dataReader.ReadAsync())
                 {
 
-                    User user = new User(dataReader.GetInt32("id"), dataReader.GetString("authenticationString"), dataReader.GetString("name"),
-                        dataReader.GetString("lastName"), dataReader.GetString("email"), dataReader.GetString("address"), dataReader.GetString("zipcode"),
-                        dataReader.GetString("city"), dataReader.GetString("phone"));
+                    User user = new User(dataReader.GetInt32("id"), dataReader.GetString("username"), dataReader.GetString("password"));
                     users.Add(user);
                 }
                 await _database.CloseConnectionAsync();
@@ -150,9 +142,7 @@ namespace ElgrosLib.Repositories
                 User user = null;
                 while (dataReader.Read())
                 {
-                    user = new User(dataReader.GetInt32("id"), dataReader.GetString("authenticationString"), dataReader.GetString("name"),
-                        dataReader.GetString("lastName"), dataReader.GetString("email"), dataReader.GetString("address"), dataReader.GetString("zipcode"),
-                        dataReader.GetString("city"), dataReader.GetString("phone"));
+                    user = new User(dataReader.GetInt32("id"), dataReader.GetString("username"), dataReader.GetString("password"));
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(user);
@@ -174,13 +164,8 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",updateEntity.Name},
-                {"@lastName",updateEntity.LastName},
-                {"@email",updateEntity.Email},
-                {"@address",updateEntity.Address},
-                {"@zipcode",updateEntity.Zipcode},
-                {"@city",updateEntity.City},
-                {"@phone",updateEntity.Phone},
+                {"@username",updateEntity.Username},
+                {"@password",updateEntity.Password}
             };
 
             // Get datareader with result from the dbcommand
