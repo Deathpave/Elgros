@@ -2,7 +2,6 @@
 using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Repositories;
-using Org.BouncyCastle.Tls;
 
 namespace ElgrosLib.Managers
 {
