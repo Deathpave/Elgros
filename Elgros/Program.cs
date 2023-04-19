@@ -1,3 +1,7 @@
+using ElgrosLib.Factories;
+using ElgrosLib.Interfaces;
+using ElgrosLib.Managers;
+
 namespace Elgros
 {
     public class Program
@@ -5,7 +9,16 @@ namespace Elgros
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var build = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("AppSettings.json", optional: true, reloadOnChange: true);
+            IConfiguration config = build.Build();
 
+            config["elgrosdb"] = config.GetConnectionString("DefaultConnection");
+            var db = DatabaseFactory.CreateDatabase(config, "elgrosdb", ElgrosLib.Adapters.DatabaseTypes.MySql);
+
+            // Manager dependency
+            builder.Services.AddScoped<ICategoryManager, CategoryManager>(manager => new CategoryManager(db));
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
