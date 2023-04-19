@@ -106,7 +106,7 @@ namespace ElgrosLib.Repositories
                 while (await dataReader.ReadAsync())
                 {
 
-                    User user = new User(dataReader.GetInt32("id"), dataReader.GetString("username"), dataReader.GetString("password"));
+                    User user = new User(dataReader.GetInt32("userId"), dataReader.GetString("username"), dataReader.GetString("password"));
                     users.Add(user);
                 }
                 await _database.CloseConnectionAsync();
@@ -142,7 +142,7 @@ namespace ElgrosLib.Repositories
                 User user = null;
                 while (dataReader.Read())
                 {
-                    user = new User(dataReader.GetInt32("id"), dataReader.GetString("username"), dataReader.GetString("password"));
+                    user = new User(dataReader.GetInt32("userId"), dataReader.GetString("username"), dataReader.GetString("password"));
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(user);

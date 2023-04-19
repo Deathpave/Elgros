@@ -69,7 +69,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = System.Data.CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@subcategoryId",deleteEntity.Id}
+                {"@subCategoryId",deleteEntity.Id}
             };
 
             // Get datreader with result from dbcommand
@@ -132,7 +132,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@categoryId",id}
+                {"@subCategoryId",id}
             };
 
             // Get datareader with result from dbcommand

@@ -1,5 +1,8 @@
 ﻿using ElgrosLib.DataModels;
 using ElgrosLib.Interfaces;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace ElgrosLib.Repositories
 {
@@ -12,29 +15,187 @@ namespace ElgrosLib.Repositories
             _database = database;
         }
 
-        public Task<bool> CreateAsync(UserInformation createEntity)
+        /// <summary>
+        /// Creates a userinformation entity in the database
+        /// </summary>
+        /// <param name="createEntity"></param>
+        /// <returns>true or false</returns>
+        public async Task<bool> CreateAsync(UserInformation createEntity)
         {
-            throw new NotImplementedException();
+            int affectedRows = 0;
+
+            // Create dbcommand with parameters
+            DbCommand command = new SqlCommand("spCreateUserInformatino");
+            command.CommandType = CommandType.StoredProcedure;
+            IDictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"@userId",createEntity.UserId},
+                {"@name",createEntity.Name},
+                {"@lastName",createEntity.LastName},
+                {"@email",createEntity.Email},
+                {"@address",createEntity.Address},
+                {"@zipcode",createEntity.Zipcode},
+                {"@city",createEntity.City},
+                {"@phone",createEntity.Phone}
+            };
+
+            // Get datareader with result from the dbcommand
+            using var dataReader = await _database.ExecuteQueryAsync(command, parameters);
+            dataReader.Read();
+            affectedRows = dataReader.RecordsAffected;
+            await _database.CloseConnectionAsync();
+
+            if (affectedRows > 0)
+            {
+                return await Task.FromResult(true);
+            }
+            else
+            {
+                return await Task.FromResult(false);
+            }
         }
 
-        public Task<bool> DeleteAsync(UserInformation deleteEntity)
+        /// <summary>
+        /// Deletes a userinformation entity in the database
+        /// </summary>
+        /// <param name="deleteEntity"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<bool> DeleteAsync(UserInformation deleteEntity)
         {
-            throw new NotImplementedException();
+            int affectedRows = 0;
+
+            // Create dbcommand
+            DbCommand command = new SqlCommand("spDeleteUserInformation");
+            command.CommandType = CommandType.StoredProcedure;
+            IDictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"@userInformationId",deleteEntity.Id}
+            };
+
+            // Get datareader with result from dbcommand
+            using var dataReader = await _database.ExecuteQueryAsync(command, parameters);
+            dataReader.Read();
+            affectedRows = dataReader.RecordsAffected;
+
+            if (affectedRows > 0)
+            {
+                return await Task.FromResult(true);
+            }
+            else
+            {
+                return await Task.FromResult(false);
+            }
         }
 
-        public Task<IEnumerable<UserInformation>> GetAllAsync()
+        /// <summary>
+        /// Gets all userinformation entities from the database
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<UserInformation>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            List<UserInformation> userInformations = new List<UserInformation>();
+
+            // Create dbcommand
+            DbCommand command = new SqlCommand("spGetAllUserInformations");
+            command.CommandType = CommandType.StoredProcedure;
+
+            // Get datareader with result from dbcommand
+            using var dataReader = await _database.ExecuteQueryAsync(command);
+            if (dataReader.HasRows == false)
+            {
+                await _database.CloseConnectionAsync();
+                return userInformations;
+            }
+            else
+            {
+                while (await dataReader.ReadAsync())
+                {
+                    UserInformation userInformation = new UserInformation(dataReader.GetInt32("id"), dataReader.GetInt32("userId"), dataReader.GetString("name"), dataReader.GetString("lastName"),
+                        dataReader.GetString("email"), dataReader.GetString("address"), dataReader.GetString("zipcode"), dataReader.GetString("city"),
+                        dataReader.GetString("phone"));
+                    userInformations.Add(userInformation);
+                }
+                await _database.CloseConnectionAsync();
+                return userInformations;
+            }
         }
 
-        public Task<UserInformation> GetByIdAsync(int id)
+        /// <summary>
+        /// Gets a specific userinformation entity from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<UserInformation> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            // Create dbcommand
+            DbCommand command = new SqlCommand("spGetUserInformationById");
+            command.CommandType = CommandType.StoredProcedure;
+            IDictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"@userInformationId",id}
+            };
+
+            // Get datareader with result from dbcommand
+            using var dataReader = await _database.ExecuteQueryAsync(command, parameters);
+            if (dataReader.HasRows == false)
+            {
+                await _database.CloseConnectionAsync();
+                return null;
+            }
+            else
+            {
+                UserInformation user = null;
+                while (dataReader.Read())
+                {
+                    user = new UserInformation(dataReader.GetInt32("id"), dataReader.GetInt32("userId"), dataReader.GetString("name"), dataReader.GetString("lastName"),
+                        dataReader.GetString("email"), dataReader.GetString("address"), dataReader.GetString("zipcode"), dataReader.GetString("city"),
+                        dataReader.GetString("phone"));
+                }
+                await _database.CloseConnectionAsync();
+                return await Task.FromResult(user);
+            }
         }
 
-        public Task<bool> UpdateAsync(UserInformation updateEntity)
+        /// <summary>
+        /// Updates a userinformation entity in the database
+        /// </summary>
+        /// <param name="updateEntity"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<bool> UpdateAsync(UserInformation updateEntity)
         {
-            throw new NotImplementedException();
+            int affectedRows = 0;
+
+            // Create dbcommand
+            DbCommand command = new SqlCommand("spUpdateUserInformation");
+            command.CommandType = CommandType.StoredProcedure;
+            IDictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"@name",updateEntity.Name},
+                {"@lastName",updateEntity.LastName},
+                {"@email",updateEntity.Email},
+                {"@address",updateEntity.Address},
+                {"@zipcode",updateEntity.Zipcode},
+                {"@city",updateEntity.City},
+                {"@phone",updateEntity.Phone}
+            };
+
+            // Get datareader with result from the dbcommand
+            using var dataReader = await _database.ExecuteQueryAsync(command, parameters);
+            dataReader.Read();
+            affectedRows = dataReader.RecordsAffected;
+            await _database.CloseConnectionAsync();
+
+            if (affectedRows > 0)
+            {
+                return await Task.FromResult(true);
+            }
+            else
+            {
+                return await Task.FromResult(false);
+            }
         }
     }
 }
