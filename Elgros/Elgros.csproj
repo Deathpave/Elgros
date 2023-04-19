@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\User\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
