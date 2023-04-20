@@ -18,7 +18,7 @@ namespace ElgrosLib.Managers
         {
             try
             {
-                return CategoryFactory.CreateCategory(0,name);
+                return CategoryFactory.CreateCategory(0, name);
             }
             catch (Exception e)
             {
@@ -84,26 +84,59 @@ namespace ElgrosLib.Managers
             }
             catch (Exception e)
             {
-                //try
-                //{
-                //    return Task.FromResult();
-                //}
-                //catch (Exception f)
-                //{
-                //    return Task.FromResult();
-                //}
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"CategoryManager could not get all categories\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"CategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
             }
-            return null;
         }
 
         public Task<Category> GetByIdAsync(int id)
         {
-            return _repository.GetByIdAsync(id);
+            try
+            {
+                return _repository.GetByIdAsync(id);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"CategoryManager could not get category by id\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"CategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+            }
         }
 
         public Task<bool> UpdateAsync(Category updateEntity)
         {
-            return _repository.UpdateAsync(updateEntity);
+            try
+            {
+                return _repository.UpdateAsync(updateEntity);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"CategoryManager could not update category\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"CategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+            }
         }
     }
 }

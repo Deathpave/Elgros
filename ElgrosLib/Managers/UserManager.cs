@@ -40,19 +40,67 @@ namespace ElgrosLib.Managers
 
         public User ConvertToUser(string username, string password)
         {
-            Encryption encryption = new Encryption();
-            User user = UserFactory.CreateUser(0,encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
-            return user;
+            try
+            {
+                Encryption encryption = new Encryption();
+                User user = UserFactory.CreateUser(0, encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
+                return user;
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserManager could not convert data to User\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"UserManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+            }
         }
 
         public Task<bool> CreateAsync(User createEntity)
         {
-            return _repository.CreateAsync(createEntity);
+            try
+            {
+                return _repository.CreateAsync(createEntity);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserManager could not create User\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"UserManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+            }
         }
 
         public Task<bool> DeleteAsync(User deleteEntity)
         {
-            return _repository.DeleteAsync(deleteEntity);
+            try
+            {
+                return _repository.DeleteAsync(deleteEntity);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserManager could not delete User\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"UserManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+            }
         }
 
         public Task<IEnumerable<User>> GetAllAsync()
@@ -67,7 +115,23 @@ namespace ElgrosLib.Managers
 
         public Task<bool> UpdateAsync(User updateEntity)
         {
-            return _repository.UpdateAsync(updateEntity);
+            try
+            {
+                return _repository.UpdateAsync(updateEntity);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserManager could not update User\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"UserManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return null;
+                }
+            }
         }
     }
 }
