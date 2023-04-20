@@ -6,7 +6,7 @@ namespace ElgrosLib.Interfaces
     /// Super class for all repositories
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal interface IRepository<T> where T : BaseEntity
+    public interface ICRUD<T> where T : BaseEntity
     {
         /// <summary>
         /// Generic create CRUD operation
