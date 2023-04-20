@@ -14,7 +14,7 @@ namespace ElgrosLib.Managers
             _repository = new ProductRepository(database);
         }
 
-        public Product ConvertToProduct(string name, string description, double price, double quantity, string photoUrl, int categoryId, int subCategoryId, int id = 0)
+        public Product ConvertToProduct(string name, string description, double price, int quantity, string photoUrl, int categoryId, int subCategoryId, int id = 0)
         {
             try
             {
