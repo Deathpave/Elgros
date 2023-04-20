@@ -1,4 +1,5 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using System.Data;
 using System.Data.Common;
@@ -69,7 +70,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = System.Data.CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@categoryId",deleteEntity.Id}
+                {"@id",deleteEntity.Id}
             };
 
             // Get datreader with result from dbcommand
@@ -110,7 +111,7 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    Category category = new Category(dataReader.GetInt32("id"), dataReader.GetString("name"));
+                    Category category = CategoryFactory.CreateCategory(dataReader.GetInt32("id"), dataReader.GetString("name"));
                     categories.Add(category);
                 }
                 await _database.CloseConnectionAsync();
@@ -131,7 +132,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@categoryId",id}
+                {"@id",id}
             };
 
             // Get datareader with result from dbcommand
@@ -146,7 +147,7 @@ namespace ElgrosLib.Repositories
                 Category category = null;
                 while (dataReader.Read())
                 {
-                    category = new Category(dataReader.GetInt32("id"), dataReader.GetString("name"));
+                    category = CategoryFactory.CreateCategory(dataReader.GetInt32("id"), dataReader.GetString("name"));
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(category);

@@ -36,7 +36,7 @@ namespace ElgrosLib.Adapters
                     AddSqlParamsToSqlCommand(commandObj, sqlParams);
                 }
 
-                await OpenConnectionAsync();
+                await base.OpenConnectionAsync();
 
                 return await commandObj.ExecuteReaderAsync(CommandBehavior.CloseConnection);
             }

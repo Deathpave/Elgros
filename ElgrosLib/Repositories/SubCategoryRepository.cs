@@ -1,4 +1,5 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using System.Data;
 using System.Data.Common;
@@ -69,7 +70,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = System.Data.CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@subCategoryId",deleteEntity.Id}
+                {"@id",deleteEntity.Id}
             };
 
             // Get datreader with result from dbcommand
@@ -111,7 +112,7 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    SubCategory category = new SubCategory(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetInt32("categoryId"));
+                    SubCategory category = SubCategoryFactory.CreateSubCategory(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetInt32("categoryId"));
                     categories.Add(category);
                 }
                 await _database.CloseConnectionAsync();
@@ -132,7 +133,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@subCategoryId",id}
+                {"@id",id}
             };
 
             // Get datareader with result from dbcommand
@@ -147,7 +148,7 @@ namespace ElgrosLib.Repositories
                 SubCategory category = null;
                 while (dataReader.Read())
                 {
-                    category = new SubCategory(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetInt32("categoryId"));
+                    category = SubCategoryFactory.CreateSubCategory(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetInt32("categoryId"));
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(category);

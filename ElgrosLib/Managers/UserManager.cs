@@ -41,7 +41,7 @@ namespace ElgrosLib.Managers
         public User ConvertToUser(string username, string password)
         {
             Encryption encryption = new Encryption();
-            User user = UserFactory.CreateUser(encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
+            User user = UserFactory.CreateUser(0,encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
             return user;
         }
 

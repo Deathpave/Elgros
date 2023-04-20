@@ -16,7 +16,7 @@ namespace ElgrosLib.Managers
 
         public SubCategory ConvertToSubCategory(string name, int categoryId)
         {
-            return SubCategoryFactory.CreateSubCategory(name, categoryId);
+            return SubCategoryFactory.CreateSubCategory(0, name, categoryId);
         }
 
         public Task<bool> CreateAsync(SubCategory createEntity)
