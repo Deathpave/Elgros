@@ -1,6 +1,7 @@
 using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Managers;
+using Microsoft.AspNetCore.Identity;
 
 namespace Elgros
 {
@@ -14,6 +15,7 @@ namespace Elgros
                 .AddJsonFile("AppSettings.json", optional: true, reloadOnChange: true);
             IConfiguration config = build.Build();
 
+            // Initialize an instance of an IDatabase for manager injections
             config["elgrosdb"] = config.GetConnectionString("DefaultConnection");
             var db = DatabaseFactory.CreateDatabase(config, "elgrosdb", ElgrosLib.Adapters.DatabaseTypes.MySql);
 
@@ -23,6 +25,8 @@ namespace Elgros
             builder.Services.AddScoped<ISubCategoryManager, SubCategoryManager>(manager => new SubCategoryManager(db));
             builder.Services.AddScoped<IUserManager, UserManager>(manager => new UserManager(db));
             builder.Services.AddScoped<IUserInformationManager, UserInformationManager>(manager => new UserInformationManager(db));
+
+            LogFactory.Initialize(Environment.CurrentDirectory + "\\TestLogs.txt");
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
