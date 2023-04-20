@@ -38,14 +38,28 @@ CREATE TABLE `users`
 `password` VARCHAR(255) NOT NULL
 ) ;
 
+CREATE TABLE `userinformation`
+(
+`id` INT NOT NULL PRIMARY KEY,
+`firstName` VARCHAR(20),
+`lastName` VARCHAR(20),
+`email` VARCHAR(255),
+`address` VARCHAR(255),
+`zipcode` VARCHAR(255),
+`City` VARCHAR(255),
+`Phone` VARCHAR(255),
+FOREIGN KEY (id) REFERENCES users (id) ON DELETE CASCADE
+);
+
 CREATE TABLE `products` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `description` TEXT NOT NULL,
   `price` DECIMAL NOT NULL,
   `quantity` INT NOT NULL,
-  `categoryId` INT NOT NULL,
-  `subcategoryId` INT NOT NULL,
+  `photoUrl` VARCHAR(255),
+  `categoryId` INT,
+  `subcategoryId` INT,
   PRIMARY KEY (id),
   FOREIGN KEY (categoryId) REFERENCES categories (id),
   FOREIGN KEY (subcategoryId) REFERENCES subCategories (id)
