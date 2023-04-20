@@ -19,6 +19,10 @@ namespace Elgros
 
             // Manager dependency
             builder.Services.AddScoped<ICategoryManager, CategoryManager>(manager => new CategoryManager(db));
+            builder.Services.AddScoped<IProductManager, ProductManager>(manager => new ProductManager(db));
+            builder.Services.AddScoped<ISubCategoryManager, SubCategoryManager>(manager => new SubCategoryManager(db));
+            builder.Services.AddScoped<IUserManager, UserManager>(manager => new UserManager(db));
+            builder.Services.AddScoped<IUserInformationManager, UserInformationManager>(manager => new UserInformationManager(db));
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
