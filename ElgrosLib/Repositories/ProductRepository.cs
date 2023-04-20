@@ -106,7 +106,7 @@ namespace ElgrosLib.Repositories
 
             // Get datareader with result from dbcommand
             using var dataReader = await _database.ExecuteQueryAsync(command);
-            if (dataReader.HasRows == false)
+            if (dataReader.HasRows == false) // Make it return error message to frontend
             {
                 await _database.CloseConnectionAsync();
                 return products;

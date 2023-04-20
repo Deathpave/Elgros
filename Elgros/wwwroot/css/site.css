@@ -173,6 +173,23 @@ footer {
     flex-direction: row;
 }
 
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+}
+
+    .dropdown-content a {
+        background-color: black;
+    }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 /* Media design */
 
 @media only screen and (max-width: 600px) {
