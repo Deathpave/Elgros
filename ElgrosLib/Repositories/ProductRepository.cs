@@ -75,7 +75,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@productId",deleteEntity.Id}
+                {"@id",deleteEntity.Id}
             };
 
             // Get datareader with result from dbcommand
@@ -116,8 +116,8 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    Product product = new Product(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("description"), dataReader.GetDouble("price"), dataReader.GetDouble("quantity"),
-                        dataReader.GetString("photoUrl"), dataReader.GetInt32("categoryId"), dataReader.GetInt32("subCategoryId"));
+                    Product product = ProductFactory.CreateProduct(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("description"), dataReader.GetDouble("price"), dataReader.GetDouble("quantity"),
+                    dataReader.GetString("photoUrl"), dataReader.GetInt32("categoryId"), dataReader.GetInt32("subCategoryId"));
                     products.Add(product);
                 }
                 await _database.CloseConnectionAsync();
@@ -138,7 +138,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@productId",id}
+                {"@id",id}
             };
 
             // Get datareader with result from dbcommand
@@ -153,7 +153,7 @@ namespace ElgrosLib.Repositories
                 Product product = null;
                 while (dataReader.Read())
                 {
-                    product = new Product(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("description"), dataReader.GetDouble("price"), dataReader.GetDouble("quantity"),
+                    product = ProductFactory.CreateProduct(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("description"), dataReader.GetDouble("price"), dataReader.GetDouble("quantity"),
                        dataReader.GetString("photoUrl"), dataReader.GetInt32("categoryId"), dataReader.GetInt32("subCategoryId"));
                 }
                 await _database.CloseConnectionAsync();

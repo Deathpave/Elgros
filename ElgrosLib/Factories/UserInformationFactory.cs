@@ -12,9 +12,9 @@ namespace ElgrosLib.Factories
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static UserInformation CreateUserInformation(int userId, string name, string lastname, string email, string address, string zipcode, string city, string phone)
+        public static UserInformation CreateUserInformation(int id, string name, string lastname, string email, string address, string zipcode, string city, string phone)
         {
-            return new UserInformation(0, userId, name, lastname, email, address, zipcode, city, phone);
+            return new UserInformation(id, name, lastname, email, address, zipcode, city, phone);
         }
     }
 }

@@ -2,7 +2,6 @@
 {
     public class UserInformation : BaseEntity
     {
-        private int _userId;
         private string _name;
         private string _lastName;
         private string _email;
@@ -11,7 +10,6 @@
         private string _city;
         private string _phone;
 
-        public int UserId { get; set; }
         public string Name { get { return _name; } }
         public string LastName { get { return _lastName; } }
         public string Email { get { return _email; } }
@@ -20,9 +18,8 @@
         public string City { get { return _city; } }
         public string Phone { get { return _phone; } }
 
-        public UserInformation(int id, int userId, string name, string lastname, string email, string address, string zipcode, string city, string phone) : base(id)
+        public UserInformation(int id, string name, string lastname, string email, string address, string zipcode, string city, string phone) : base(id)
         {
-            _userId = userId;
             _name = name;
             _lastName = lastname;
             _email = email;

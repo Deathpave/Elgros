@@ -13,9 +13,9 @@ namespace ElgrosLib.Factories
         /// <param name="name"></param>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        public static SubCategory CreateSubCategory(string name, int categoryId)
+        public static SubCategory CreateSubCategory(int id, string name, int categoryId)
         {
-            return new SubCategory(0, name, categoryId);
+            return new SubCategory(id, name, categoryId);
         }
     }
 }

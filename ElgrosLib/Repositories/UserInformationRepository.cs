@@ -3,6 +3,7 @@ using ElgrosLib.Interfaces;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data;
+using ElgrosLib.Factories;
 
 namespace ElgrosLib.Repositories
 {
@@ -29,7 +30,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@userId",createEntity.UserId},
+                {"@id",createEntity.Id},
                 {"@name",createEntity.Name},
                 {"@lastName",createEntity.LastName},
                 {"@email",createEntity.Email},
@@ -70,7 +71,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@userInformationId",deleteEntity.Id}
+                {"@id",deleteEntity.Id}
             };
 
             // Get datareader with result from dbcommand
@@ -111,7 +112,7 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    UserInformation userInformation = new UserInformation(dataReader.GetInt32("id"), dataReader.GetInt32("userId"), dataReader.GetString("name"), dataReader.GetString("lastName"),
+                    UserInformation userInformation = UserInformationFactory.CreateUserInformation(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("lastName"),
                         dataReader.GetString("email"), dataReader.GetString("address"), dataReader.GetString("zipcode"), dataReader.GetString("city"),
                         dataReader.GetString("phone"));
                     userInformations.Add(userInformation);
@@ -134,7 +135,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@userInformationId",id}
+                {"@id",id}
             };
 
             // Get datareader with result from dbcommand
@@ -149,7 +150,7 @@ namespace ElgrosLib.Repositories
                 UserInformation user = null;
                 while (dataReader.Read())
                 {
-                    user = new UserInformation(dataReader.GetInt32("id"), dataReader.GetInt32("userId"), dataReader.GetString("name"), dataReader.GetString("lastName"),
+                    user = UserInformationFactory.CreateUserInformation(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("lastName"),
                         dataReader.GetString("email"), dataReader.GetString("address"), dataReader.GetString("zipcode"), dataReader.GetString("city"),
                         dataReader.GetString("phone"));
                 }
