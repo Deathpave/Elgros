@@ -8,10 +8,13 @@ namespace Elgros.Controllers
     {
         private readonly IProductManager _productManager;
         private readonly ILogger<ProductController> _logger;
-        public ProductController(ILogger<ProductController> logger,IProductManager productmanager ) {
+
+        public ProductController(ILogger<ProductController> logger, IProductManager productmanager)
+        {
             _productManager = productmanager;
             _logger = logger;
         }
+
         [HttpGet("/products")]
         public async Task<IActionResult> Products()
         {
