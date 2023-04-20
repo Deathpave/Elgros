@@ -4,6 +4,8 @@ namespace ElgrosLib.Interfaces
 {
     public interface IUserManager
     {
+        public Task<int> CheckLogin(string username, string password);
+
         /// <summary>
         /// Adds a new user to the database
         /// </summary>

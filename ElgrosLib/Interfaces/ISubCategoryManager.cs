@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ElgrosLib.Interfaces
 {
-    internal interface ISubCategoryManager
+    public interface ISubCategoryManager
     {
         /// <summary>
         /// Adds a new subcategory to the database

@@ -36,6 +36,13 @@ namespace ElgrosLib.Interfaces
         public Task<User> GetByIdAsync(int id);
 
         /// <summary>
+        /// Gets a user by name
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public Task<User> GetByNameAsync(string name);
+
+        /// <summary>
         /// Updates a user
         /// </summary>
         /// <param name="updateEntity"></param>

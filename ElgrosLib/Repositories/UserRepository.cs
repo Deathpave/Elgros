@@ -115,7 +115,7 @@ namespace ElgrosLib.Repositories
         }
 
         /// <summary>
-        /// Gets a specific user entity from the database
+        /// Gets a specific user entity from the database by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -128,6 +128,41 @@ namespace ElgrosLib.Repositories
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
                 {"@userId",id}
+            };
+
+            // Get datareader with result from dbcommand
+            using var dataReader = await _database.ExecuteQueryAsync(command, parameters);
+            if (dataReader.HasRows == false)
+            {
+                await _database.CloseConnectionAsync();
+                return null;
+            }
+            else
+            {
+                User user = null;
+                while (dataReader.Read())
+                {
+                    user = new User(dataReader.GetInt32("userId"), dataReader.GetString("username"), dataReader.GetString("password"));
+                }
+                await _database.CloseConnectionAsync();
+                return await Task.FromResult(user);
+            }
+        }
+
+        /// <summary>
+        /// Gets a specific user entity from the database by name
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<User> GetByNameAsync(string name)
+        {
+            // Create dbcommand
+            DbCommand command = new SqlCommand("spGetUserById");
+            command.CommandType = CommandType.StoredProcedure;
+            IDictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"@name",name}
             };
 
             // Get datareader with result from dbcommand

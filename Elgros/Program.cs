@@ -21,13 +21,10 @@ namespace Elgros
 
             // Manager dependency
             builder.Services.AddScoped<ICategoryManager, CategoryManager>(manager => new CategoryManager(db));
+            builder.Services.AddScoped<IProductManager, ProductManager>(manager => new ProductManager(db));
+            builder.Services.AddScoped<ISubCategoryManager, SubCategoryManager>(manager => new SubCategoryManager(db));
             builder.Services.AddScoped<IUserManager, UserManager>(manager => new UserManager(db));
             builder.Services.AddScoped<IUserInformationManager, UserInformationManager>(manager => new UserInformationManager(db));
-            builder.Services.AddScoped<IProductManager, ProductManager>(manager => new ProductManager(db));
-
-            // Initialize the log that handles errors if database can not be reached
-            LogFactory.Initialize(Environment.CurrentDirectory + "\\TestLogs.txt");
-
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
