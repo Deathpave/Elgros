@@ -286,6 +286,73 @@ BEGIN
 END //
 DELIMITER ;
 
+/*####################################################
+			## UserInformation Section ##
+####################################################*/
+DROP PROCEDURE IF EXISTS `spCreateUserInformation`;
+DROP PROCEDURE IF EXISTS `spUpdateUserInformation`;
+DROP PROCEDURE IF EXISTS `spDeleteUserInformation`;
+DROP PROCEDURE IF EXISTS `spGetUserInformationById`;
+DROP PROCEDURE IF EXISTS `spGetAllUserInformations`;
+
+-- Create operation
+DELIMITER //
+CREATE PROCEDURE `spCreateUserInformation` (IN UserId INT, IN newFirstName VARCHAR(255), IN newLastName VARCHAR(255), IN newEmail VARCHAR(255), IN newAddress VARCHAR(255), IN newZipcode VARCHAR(255), IN newCity VARCHAR(255), IN newPhone VARCHAR(255))
+BEGIN	
+	INSERT INTO UserInformation (id, firstName, lastName, email, address, zipcode, city, phone) 
+	VALUES (UserId, newFirstName, newLastName, newEmail, newAddress, newZipcode, newCity, newPhone);
+END //
+DELIMITER ;
+
+-- Read operation
+DELIMITER //
+CREATE PROCEDURE `spGetUserInformationById` (IN UserId INT)
+BEGIN
+	SELECT * FROM UserInformation 
+    WHERE id = UserId;
+END //
+DELIMITER ;
+
+-- Read operation
+DELIMITER //
+CREATE PROCEDURE `spGetUserInformationByName` (IN UserName VARCHAR(255))
+BEGIN
+	SELECT * FROM UserInformation
+    WHERE username = UserName;
+END //
+DELIMITER;
+
+-- Read all operation
+DELIMITER //
+CREATE PROCEDURE `spGetAllUserInformations` ()
+BEGIN
+	SELECT * FROM UserInformation;
+END //
+DELIMITER ;
+
+-- Update operation
+DELIMITER //
+CREATE PROCEDURE `spUpdateUserInformation` (IN UserId INT, IN newFirstName VARCHAR(255), IN newLastName VARCHAR(255), IN newEmail VARCHAR(255), IN newAddress VARCHAR(255), IN newZipcode VARCHAR(255), IN newCity VARCHAR(255), IN newPhone VARCHAR(255))
+BEGIN
+	UPDATE UserInformation SET 
+    firstName = newFirstName,
+    lastName = newLastName,
+    email = newEmail,
+    address = newAdress,
+    zipcode = newZipcode,
+    city = newCity,
+    phone = newPhone
+    WHERE id = UserId;
+END //
+DELIMITER ;
+
+-- Delete operation
+DELIMITER //
+CREATE PROCEDURE `spDeleteUserInformation` (IN UserId INT)
+BEGIN
+	DELETE FROM UserInformation WHERE id = UserId;
+END //
+DELIMITER ;
 
 /*####################################################
 			## Log Section ##
