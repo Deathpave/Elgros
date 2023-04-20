@@ -16,22 +16,84 @@ namespace ElgrosLib.Managers
 
         public Category ConvertToCategory(string name)
         {
-            return CategoryFactory.CreateCategory(name);
+            try
+            {
+                return CategoryFactory.CreateCategory(name);
+            }
+            catch (Exception e)
+            {
+                LogFactory.CreateLog(Logs.LogTypes.File, $"CategoryFactory could not convert data\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                return null;
+            }
         }
 
         public Task<bool> CreateAsync(Category createEntity)
         {
-            return _repository.CreateAsync(createEntity);
+            try
+            {
+                bool result = _repository.CreateAsync(createEntity).Result;
+                return Task.FromResult(result);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"CategoryManager could not create category\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return Task.FromResult(false);
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"CategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return Task.FromResult(false);
+                }
+            }
         }
 
         public Task<bool> DeleteAsync(Category deleteEntity)
         {
-            return _repository.DeleteAsync(deleteEntity);
+            try
+            {
+                bool result = _repository.DeleteAsync(deleteEntity).Result;
+                return Task.FromResult(result);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.Database, $"CategoryManager could not delete category\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return Task.FromResult(false);
+                }
+                catch (Exception f)
+                {
+                    LogFactory.CreateLog(Logs.LogTypes.File, $"CategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    return Task.FromResult(false);
+                }
+            }
         }
 
         public Task<IEnumerable<Category>> GetAllAsync()
         {
-            return _repository.GetAllAsync();
+            try
+            {
+                IEnumerable<Category> categories = _repository.GetAllAsync().Result;
+                if (categories == null)
+                {
+                    categories = new List<Category>();
+                }
+                return Task.FromResult(categories);
+            }
+            catch (Exception e)
+            {
+                //try
+                //{
+                //    return Task.FromResult();
+                //}
+                //catch (Exception f)
+                //{
+                //    return Task.FromResult();
+                //}
+            }
+            return null;
         }
 
         public Task<Category> GetByIdAsync(int id)
