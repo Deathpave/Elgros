@@ -3,11 +3,10 @@
 namespace ElgrosLib.Interfaces
 {
     /// <summary>
-    /// Super class for all repositories
+    /// Super class for all managers
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal interface IRepository<T> : ICRUD<T> where T : BaseEntity
+    public interface IManager<T> : ICRUD<T> where T : BaseEntity
     {
-        
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ElgrosLib.Interfaces
 {
-    public interface IProductManager : ICRUD<Product>
+    public interface IProductManager : IManager<Product>
     {
         
     }

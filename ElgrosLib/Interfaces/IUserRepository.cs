@@ -2,7 +2,7 @@
 
 namespace ElgrosLib.Interfaces
 {
-    internal interface IUserRepository : ICRUD<User>
+    internal interface IUserRepository : IRepository<User>
     {
         
     }

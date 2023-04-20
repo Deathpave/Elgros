@@ -2,7 +2,7 @@
 
 namespace ElgrosLib.Interfaces
 {
-    public interface IUserManager : ICRUD<User>
+    public interface IUserManager : IManager<User>
     {
         public Task<int> CheckLogin(string username, string password);
 

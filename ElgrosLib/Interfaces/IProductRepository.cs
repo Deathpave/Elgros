@@ -2,7 +2,7 @@
 
 namespace ElgrosLib.Interfaces
 {
-    internal interface IProductRepository : ICRUD<Product>
+    internal interface IProductRepository : IRepository<Product>
     {
        
     }

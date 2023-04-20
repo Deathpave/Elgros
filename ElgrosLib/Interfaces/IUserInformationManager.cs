@@ -2,7 +2,7 @@
 
 namespace ElgrosLib.Interfaces
 {
-    public interface IUserInformationManager : ICRUD<UserInformation>
+    public interface IUserInformationManager : IManager<UserInformation>
     {
        
     }

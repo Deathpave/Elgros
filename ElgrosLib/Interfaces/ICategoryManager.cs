@@ -2,7 +2,7 @@
 
 namespace ElgrosLib.Interfaces
 {
-    public interface ICategoryManager : ICRUD<Category>
+    public interface ICategoryManager : IManager<Category>
     {
        
     }

@@ -2,7 +2,7 @@
 
 namespace ElgrosLib.Interfaces
 {
-    internal interface ISubCategoryRepository : ICRUD<SubCategory>
+    internal interface ISubCategoryRepository : IRepository<SubCategory>
     {
         
     }
