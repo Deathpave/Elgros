@@ -3,7 +3,7 @@
 namespace ElgrosLib.Interfaces
 {
     /// <summary>
-    /// Super class for all repositories
+    /// Super class for all CRUD Operations
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface ICRUD<T> where T : BaseEntity
