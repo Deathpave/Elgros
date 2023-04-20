@@ -111,7 +111,7 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    Category category = CategoryFactory.CreateCategory(dataReader.GetInt32("id"), dataReader.GetString("name"));
+                    Category category = CategoryFactory.CreateCategory((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "");
                     categories.Add(category);
                 }
                 await _database.CloseConnectionAsync();
@@ -147,7 +147,7 @@ namespace ElgrosLib.Repositories
                 Category category = null;
                 while (dataReader.Read())
                 {
-                    category = CategoryFactory.CreateCategory(dataReader.GetInt32("id"), dataReader.GetString("name"));
+                    category = CategoryFactory.CreateCategory((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "");
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(category);

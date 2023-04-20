@@ -116,8 +116,9 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    Product product = ProductFactory.CreateProduct(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("description"), dataReader.GetDouble("price"), dataReader.GetDouble("quantity"),
-                    dataReader.GetString("photoUrl"), dataReader.GetInt32("categoryId"), dataReader.GetInt32("subCategoryId"));
+                    Product product = ProductFactory.CreateProduct((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
+                    dataReader.GetString("description") ?? "", (double?)dataReader.GetDouble("price") ?? 0, (int?)dataReader.GetInt32("quantity") ?? 0,
+                    dataReader.GetString("photoUrl") ?? "", (int?)dataReader.GetInt32("categoryId") ?? 0, (int?)dataReader.GetInt32("subCategoryId") ?? 0);
                     products.Add(product);
                 }
                 await _database.CloseConnectionAsync();
@@ -153,8 +154,9 @@ namespace ElgrosLib.Repositories
                 Product product = null;
                 while (dataReader.Read())
                 {
-                    product = ProductFactory.CreateProduct(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("description"), dataReader.GetDouble("price"), dataReader.GetDouble("quantity"),
-                       dataReader.GetString("photoUrl"), dataReader.GetInt32("categoryId"), dataReader.GetInt32("subCategoryId"));
+                    product = ProductFactory.CreateProduct((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
+                    dataReader.GetString("description") ?? "", (double?)dataReader.GetDouble("price") ?? 0, (int?)dataReader.GetInt32("quantity") ?? 0,
+                       dataReader.GetString("photoUrl") ?? "", (int?)dataReader.GetInt32("categoryId") ?? 0, (int?)dataReader.GetInt32("subCategoryId") ?? 0);
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(product);

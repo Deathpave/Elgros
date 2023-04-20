@@ -112,7 +112,8 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    SubCategory category = SubCategoryFactory.CreateSubCategory(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetInt32("categoryId"));
+                    SubCategory category = SubCategoryFactory.CreateSubCategory((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
+                    (int?)dataReader.GetInt32("categoryId") ?? 0);
                     categories.Add(category);
                 }
                 await _database.CloseConnectionAsync();
@@ -148,7 +149,8 @@ namespace ElgrosLib.Repositories
                 SubCategory category = null;
                 while (dataReader.Read())
                 {
-                    category = SubCategoryFactory.CreateSubCategory(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetInt32("categoryId"));
+                    category = SubCategoryFactory.CreateSubCategory((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
+                    (int?)dataReader.GetInt32("categoryId") ?? 0);
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(category);

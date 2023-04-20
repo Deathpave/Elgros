@@ -112,9 +112,10 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    UserInformation userInformation = UserInformationFactory.CreateUserInformation(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("lastName"),
-                        dataReader.GetString("email"), dataReader.GetString("address"), dataReader.GetString("zipcode"), dataReader.GetString("city"),
-                        dataReader.GetString("phone"));
+                    UserInformation userInformation = UserInformationFactory.CreateUserInformation((int?)dataReader.GetInt32("id") ?? 0,
+                        dataReader.GetString("name") ?? "", dataReader.GetString("lastName") ?? "", dataReader.GetString("email") ?? "",
+                        dataReader.GetString("address") ?? "", dataReader.GetString("zipcode") ?? "", dataReader.GetString("city") ?? "",
+                        dataReader.GetString("phone") ?? "");
                     userInformations.Add(userInformation);
                 }
                 await _database.CloseConnectionAsync();
@@ -150,9 +151,9 @@ namespace ElgrosLib.Repositories
                 UserInformation user = null;
                 while (dataReader.Read())
                 {
-                    user = UserInformationFactory.CreateUserInformation(dataReader.GetInt32("id"), dataReader.GetString("name"), dataReader.GetString("lastName"),
-                        dataReader.GetString("email"), dataReader.GetString("address"), dataReader.GetString("zipcode"), dataReader.GetString("city"),
-                        dataReader.GetString("phone"));
+                    user = UserInformationFactory.CreateUserInformation((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
+                        dataReader.GetString("lastName") ?? "", dataReader.GetString("email") ?? "", dataReader.GetString("address") ?? "",
+                        dataReader.GetString("zipcode") ?? "", dataReader.GetString("city") ?? "", dataReader.GetString("phone") ?? "");
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(user);
