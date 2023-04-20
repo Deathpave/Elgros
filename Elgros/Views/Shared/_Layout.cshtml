@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor context;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +18,7 @@
                 <img class="icon" src="assets/support.png" alt="">
                 <img class="icon" src="assets/fast-delivery.png" alt="">
                 <img class="icon" src="assets/cart.png" alt="">
+                <a> @context.HttpContext.Session.GetString("CartCount")</a>
             </div>
         </div>
         <div class="navbar">
