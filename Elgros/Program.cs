@@ -25,6 +25,8 @@ namespace Elgros
             builder.Services.AddScoped<ISubCategoryManager, SubCategoryManager>(manager => new SubCategoryManager(db));
             builder.Services.AddScoped<IUserManager, UserManager>(manager => new UserManager(db));
             builder.Services.AddScoped<IUserInformationManager, UserInformationManager>(manager => new UserInformationManager(db));
+
+            LogFactory.Initialize(Environment.CurrentDirectory + "\\TestLogs.txt");
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 

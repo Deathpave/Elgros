@@ -1,1 +1,2 @@
 19-04-2023 12:23 - Error - Failed to execute sql command due to Connection must be valid and open.
+20-04-2023 09:04 - Error - Failed to execute sql command due to Connection must be valid and open.
