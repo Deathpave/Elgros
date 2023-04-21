@@ -1,8 +1,9 @@
-﻿using ElgrosLib.Logs;
+﻿using ElgrosLib.DataModels;
+using ElgrosLib.Logs;
 
 namespace ElgrosLib.Interfaces
 {
-    public interface ILogManager : IManager<DatabaseLog>
+    public interface ILogManager : IManager<Log>
     {
     }
 }

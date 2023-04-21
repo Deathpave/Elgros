@@ -1,31 +1,25 @@
-﻿using ElgrosLib.Interfaces;
+﻿using ElgrosLib.DataModels;
 
 namespace ElgrosLib.Logs
 {
     /// <summary>
     /// Object class for the FileLog Entity
     /// </summary>
-    internal class FileLog : ILog
+    internal class FileLog : Log
     {
         private string _logLocation;
-        private string _message;
-        private DateTime _date;
-        private MessageTypes _messageType;
 
-        public FileLog(string message, DateTime date, MessageTypes messageType, string logLocation)
+        public FileLog(int id, string message, DateTime date, MessageTypes messageType, string logLocation) : base(id, messageType, message, date)
         {
             _logLocation = logLocation;
-            _message = message;
-            _date = date;
-            _messageType = messageType;
         }
 
         /// <summary>
         /// Writes the file log
         /// </summary>
-        public void WriteLog()
+        public override void WriteLog()
         {
-            File.AppendAllText(_logLocation, $"{_date.ToString("dd-MM-yyyy hh:mm")} - {_messageType.ToString()} - {_message}\n");
+            File.AppendAllText(_logLocation, $"{base.TimeStamp.ToString("dd-MM-yyyy hh:mm")} - {base.MessageType.ToString()} - {base.Message}\n");
         }
     }
 }
