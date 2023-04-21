@@ -73,6 +73,11 @@ namespace ElgrosLib.Managers
             throw new Exception("Logs are only allowed to be created");
         }
 
+        public void LogErrorLocally(Exception exception)
+        {
+            throw new Exception("Logs are only allowed to be created");
+        }
+
         public Task<bool> UpdateAsync(Log updateEntity)
         {
             throw new Exception("Logs are only allowed to be created");
