@@ -3,6 +3,7 @@ using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Repositories;
 using ElgrosLib.Security;
+using ElgrosLib.Logs;
 
 namespace ElgrosLib.Managers
 {
@@ -29,12 +30,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserInformationManager could not convert data to userinformation\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserInformationManager could not convert data to subcategory\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -50,12 +53,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserInformationManager could not create userinformation\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserInformationManager could not create userinformation\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -71,12 +76,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserInformationManager could not delete userinformation\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserInformationManager could not delete userinformation\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -103,12 +110,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserInformationManager could not get userinformation by id\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserInformationManager could not get userinformation by id\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -124,15 +133,24 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserInformationManager could not update userinformation\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserInformationManager could not update userinformation\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
+        }
+
+        public void LogErrorLocally(Exception exception)
+        {
+            LogManager.GetLogManager(null).CreateAsync(
+                   LogManager.GetLogManager(null).ConvertToLog(
+                   MessageTypes.Error, $"UserInformationManager could not write log to database\n{exception.Message}", LogTypes.File).Result);
         }
     }
 }

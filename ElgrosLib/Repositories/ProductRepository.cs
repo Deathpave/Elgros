@@ -16,7 +16,7 @@ namespace ElgrosLib.Repositories
         /// Constructor that sets the database
         /// </summary>
         /// <param name="database"></param>
-        public ProductRepository(IDatabase database)
+        internal ProductRepository(IDatabase database)
         {
             _database = database;
         }

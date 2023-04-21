@@ -28,7 +28,9 @@ namespace ElgrosLib.Managers
                 }
                 else
                 {
-                    LogFactory.CreateLog(LogTypes.Database, $"Failed login with username {username}", MessageTypes.Error);
+                    await LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"Failed login with username {username}", LogTypes.Database).Result);
                     return await Task.FromResult(-1);
                 }
             }
@@ -50,12 +52,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserManager could not convert data to User\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserManager could not convert data to User\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"UserManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -71,12 +75,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserManager could not create User\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserManager could not create User\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"UserManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -92,12 +98,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserManager could not delete User\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserManager could not delete User\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"UserManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -123,15 +131,24 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"UserManager could not update User\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserManager could not update User\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"UserManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
+        }
+
+        public void LogErrorLocally(Exception exception)
+        {
+            LogManager.GetLogManager(null).CreateAsync(
+                   LogManager.GetLogManager(null).ConvertToLog(
+                   MessageTypes.Error, $"UserManager could not write log to database\n{exception.Message}", LogTypes.File).Result);
         }
     }
 }

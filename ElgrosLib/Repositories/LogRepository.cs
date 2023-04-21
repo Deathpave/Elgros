@@ -9,7 +9,7 @@ namespace ElgrosLib.Repositories
     {
         private readonly IDatabase _database;
 
-        public LogRepository(IDatabase database)
+        internal LogRepository(IDatabase database)
         {
             _database = database;
         }

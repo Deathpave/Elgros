@@ -8,5 +8,6 @@ namespace ElgrosLib.Interfaces
     /// <typeparam name="T"></typeparam>
     public interface IManager<T> : ICRUD<T> where T : BaseEntity
     {
+        public void LogErrorLocally(Exception exception);
     }
 }

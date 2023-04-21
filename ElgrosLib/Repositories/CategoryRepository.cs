@@ -16,7 +16,7 @@ namespace ElgrosLib.Repositories
         /// Constructor that sets the database
         /// </summary>
         /// <param name="database"></param>
-        public CategoryRepository(IDatabase database)
+        internal CategoryRepository(IDatabase database)
         {
             _database = database;
         }

@@ -11,7 +11,7 @@ namespace ElgrosLib.Repositories
     {
         private readonly IDatabase _database;
 
-        public UserRepository(IDatabase database)
+        internal UserRepository(IDatabase database)
         {
             _database = database;
         }
