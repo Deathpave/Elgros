@@ -29,7 +29,7 @@ namespace ElgrosLib.Factories
         /// <returns></returns>
         public static Log CreateLog(LogTypes type, string message, MessageTypes messageType)
         {
-            ILog log = null;
+            Log log = null;
             switch (type)
             {
                 case LogTypes.Database:
