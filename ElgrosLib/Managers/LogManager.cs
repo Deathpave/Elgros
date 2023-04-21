@@ -1,4 +1,5 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Logs;
 using ElgrosLib.Repositories;
@@ -7,11 +8,30 @@ namespace ElgrosLib.Managers
 {
     public class LogManager : ILogManager
     {
+        private static LogManager _logManager;
         private readonly LogRepository _logRepository;
 
-        public LogManager(IDatabase database)
+        private LogManager(IDatabase database)
         {
             _logRepository = new LogRepository(database);
+        }
+
+        public static LogManager GetLogManager(IDatabase database)
+        {
+            if (_logManager != null)
+            {
+                return _logManager;
+            }
+            else
+            {
+                _logManager = new LogManager(database);
+                return _logManager;
+            }
+        }
+
+        public Task<Log> ConvertToLog(MessageTypes messageType, string message, LogTypes logType)
+        {
+            return Task.FromResult(LogFactory.CreateLog(logType, message, messageType));
         }
 
         public Task<bool> CreateAsync(Log createEntity)

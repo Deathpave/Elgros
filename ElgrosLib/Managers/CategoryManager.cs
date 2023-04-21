@@ -22,7 +22,9 @@ namespace ElgrosLib.Managers
             }
             catch (Exception e)
             {
-                LogFactory.CreateLog(Logs.LogTypes.File, $"CategoryFactory could not convert data\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                        Logs.MessageTypes.Error, $"CategoryFactory could not convert data\n{e.Message}", Logs.LogTypes.File).Result);
                 return null;
             }
         }

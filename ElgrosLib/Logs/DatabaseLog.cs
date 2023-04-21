@@ -1,4 +1,5 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Interfaces;
 
 namespace ElgrosLib.Logs
 {
