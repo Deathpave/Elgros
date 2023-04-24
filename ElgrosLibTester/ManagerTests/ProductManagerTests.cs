@@ -67,7 +67,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns></returns>
         [Test]
         [Order(3)]
-        public async Task GetByIdAsync_ReturnsAValidObject_IfArgumentsAreValid()
+        public async Task GetByIdAsync_ReturnsAValidProduct_IfArgumentsAreValid()
         {
             //Arrange
             Product requestedProduct;
@@ -97,7 +97,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns></returns>
         [Test]
         [Order(4)]
-        public async Task UpdateAsync_UpdatesExistingObject_IfArgumentsAreValid()
+        public async Task UpdateAsync_UpdatesExistingProduct_IfArgumentsAreValid()
         {
             //Arrange
             Product testProduct = CreateTestProduct();
@@ -120,7 +120,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns></returns>
         [Test]
         [Order(5)]
-        public async Task RemoveObjectAsync_RemovesExistingObject_IfArgumentsAreValid()
+        public async Task RemoveObjectAsync_RemovesExistingProduct_IfArgumentsAreValid()
         {
             //Arrange
             Product testProduct = CreateTestProduct();

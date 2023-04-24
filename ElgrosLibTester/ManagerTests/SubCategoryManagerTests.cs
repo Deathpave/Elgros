@@ -72,7 +72,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns></returns>
         [Test]
         [Order(3)]
-        public async Task GetByIdAsync_ReturnsAValidObject_IfArgumentsAreValid()
+        public async Task GetByIdAsync_ReturnsAValidSubCategory_IfArgumentsAreValid()
         {
             //Arrange
             Category category = CreateTestCategory();
@@ -100,7 +100,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns></returns>
         [Test]
         [Order(4)]
-        public async Task UpdateAsync_UpdatesExistingObject_IfArgumentsAreValid()
+        public async Task UpdateAsync_UpdatesExistingSubCategory_IfArgumentsAreValid()
         {
             //Arrange
             Category category = CreateTestCategory();
@@ -126,7 +126,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns></returns>
         [Test]
         [Order(5)]
-        public async Task RemoveObjectAsync_RemovesExistingObject_IfArgumentsAreValid()
+        public async Task RemoveObjectAsync_RemovesExistingSubCategory_IfArgumentsAreValid()
         {
             //Arrange
             Category category = CreateTestCategory();
