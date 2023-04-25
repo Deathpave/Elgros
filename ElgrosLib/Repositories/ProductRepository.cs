@@ -75,7 +75,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",deleteEntity.Id}
+                {"@productId",deleteEntity.Id}
             };
 
             // Get datareader with result from dbcommand
@@ -116,7 +116,7 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    Product product = ProductFactory.CreateProduct((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
+                    Product product = ProductFactory.CreateProduct((int?)dataReader.GetInt32("productId") ?? 0, dataReader.GetString("name") ?? "",
                     dataReader.GetString("description") ?? "", (double?)dataReader.GetDouble("price") ?? 0, (int?)dataReader.GetInt32("quantity") ?? 0,
                     dataReader.GetString("photoUrl") ?? "", (int?)dataReader.GetInt32("categoryId") ?? 0, (int?)dataReader.GetInt32("subCategoryId") ?? 0);
                     products.Add(product);
@@ -139,7 +139,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",id}
+                {"@productId",id}
             };
 
             // Get datareader with result from dbcommand
@@ -154,7 +154,7 @@ namespace ElgrosLib.Repositories
                 Product product = null;
                 while (dataReader.Read())
                 {
-                    product = ProductFactory.CreateProduct((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
+                    product = ProductFactory.CreateProduct((int?)dataReader.GetInt32("productId") ?? 0, dataReader.GetString("name") ?? "",
                     dataReader.GetString("description") ?? "", (double?)dataReader.GetDouble("price") ?? 0, (int?)dataReader.GetInt32("quantity") ?? 0,
                        dataReader.GetString("photoUrl") ?? "", (int?)dataReader.GetInt32("categoryId") ?? 0, (int?)dataReader.GetInt32("subCategoryId") ?? 0);
                 }
