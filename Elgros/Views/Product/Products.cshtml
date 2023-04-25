@@ -1,9 +1,9 @@
-﻿@model Elgros.Models.ProductModel
+﻿@model Elgros.Models.GlobalModel
 @{
     ViewData["Title"] = "Produkter";
 }
 
-@foreach (var item in Model.Products)
+@foreach (var item in Model.productModel.Products)
 {
     if (item.Quantity < 1)
     {
@@ -25,7 +25,11 @@
             <div class="product-info">
                 <p>Antal tilbage: @item.Quantity</p>
                 <div class="spacer"></div>
-                <asp:Button runat="server" id="btnLogin" Text="Log In" OnClick="btnLogin_Click" />Lig i kurv
+                @using (Html.BeginForm("saveitem", "products", FormMethod.Post))
+                {
+                    @Html.HiddenFor(Model => Model.cartModel.product,item);
+                    <input type="submit" value="Tilføj til kurv" />
+                }
             </div>
         </div>
     }

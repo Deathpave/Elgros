@@ -8,3 +8,12 @@
 20-04-2023 09:24 - Error - Failed to execute sql command due to Authentication to host '10.13.0.123' for user 'root' using method 'caching_sha2_password' failed with message: Access denied for user 'root'@'10.99.0.17' (using password: YES)
 20-04-2023 09:25 - Error - Failed to execute sql command due to Connection must be valid and open.
 20-04-2023 09:45 - Error - Failed to execute sql command due to There is already an open DataReader associated with this Connection which must be closed first.
+24-04-2023 02:40 - Error - Failed to execute sql command due to Connection must be valid and open.
+24-04-2023 02:41 - Error - Failed to execute sql command due to Connection must be valid and open.
+24-04-2023 02:46 - Error - Failed to execute sql command due to Connection must be valid and open.
+24-04-2023 02:50 - Error - Failed to execute sql command due to Connection must be valid and open.
+24-04-2023 02:53 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 09:56 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 09:56 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 09:56 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 09:57 - Error - Failed to execute sql command due to Connection must be valid and open.
