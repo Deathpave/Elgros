@@ -107,7 +107,7 @@ namespace ElgrosLib.Repositories
                 while (await dataReader.ReadAsync())
                 {
 
-                    User user = UserFactory.CreateUser((int?)dataReader.GetInt32("userId") ?? 0, dataReader.GetString("username") ?? "", dataReader.GetString("password") ?? "");
+                    User user = UserFactory.CreateUser((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("username") ?? "", dataReader.GetString("password") ?? "");
                     users.Add(user);
                 }
                 await _database.CloseConnectionAsync();
@@ -143,7 +143,7 @@ namespace ElgrosLib.Repositories
                 User user = null;
                 while (dataReader.Read())
                 {
-                    user = UserFactory.CreateUser((int?)dataReader.GetInt32("userId") ?? 0, dataReader.GetString("username") ?? "", dataReader.GetString("password") ?? "");
+                    user = UserFactory.CreateUser((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("username") ?? "", dataReader.GetString("password") ?? "");
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(user);
@@ -178,7 +178,7 @@ namespace ElgrosLib.Repositories
                 User user = null;
                 while (dataReader.Read())
                 {
-                    user = UserFactory.CreateUser((int?)dataReader.GetInt32("userId") ?? 0, dataReader.GetString("username") ?? "", dataReader.GetString("password") ?? "");
+                    user = UserFactory.CreateUser((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("username") ?? "", dataReader.GetString("password") ?? "");
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(user);

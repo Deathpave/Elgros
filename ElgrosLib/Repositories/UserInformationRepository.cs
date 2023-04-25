@@ -112,7 +112,7 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    UserInformation userInformation = UserInformationFactory.CreateUserInformation((int?)dataReader.GetInt32("userInformationId") ?? 0,
+                    UserInformation userInformation = UserInformationFactory.CreateUserInformation((int?)dataReader.GetInt32("id") ?? 0,
                         dataReader.GetString("name") ?? "", dataReader.GetString("lastName") ?? "", dataReader.GetString("email") ?? "",
                         dataReader.GetString("address") ?? "", dataReader.GetString("zipcode") ?? "", dataReader.GetString("city") ?? "",
                         dataReader.GetString("phone") ?? "");
@@ -151,7 +151,7 @@ namespace ElgrosLib.Repositories
                 UserInformation user = null;
                 while (dataReader.Read())
                 {
-                    user = UserInformationFactory.CreateUserInformation((int?)dataReader.GetInt32("userInformationId") ?? 0, dataReader.GetString("name") ?? "",
+                    user = UserInformationFactory.CreateUserInformation((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
                         dataReader.GetString("lastName") ?? "", dataReader.GetString("email") ?? "", dataReader.GetString("address") ?? "",
                         dataReader.GetString("zipcode") ?? "", dataReader.GetString("city") ?? "", dataReader.GetString("phone") ?? "");
                 }
