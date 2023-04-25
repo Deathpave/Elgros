@@ -25,11 +25,16 @@
             <div class="product-info">
                 <p>Antal tilbage: @item.Quantity</p>
                 <div class="spacer"></div>
-                @using (Html.BeginForm("saveitem", "products", FormMethod.Post))
+                <form action="products/saveitem" method="post">
+                    <input type="hidden" value="@item.Id" name="item" />
+                    <input type="submit" value="Tilføj til kurv" />
+                </form>
+                @*@using (Html.BeginForm("saveitem", "products", FormMethod.Post))
                 {
                     @Html.HiddenFor(Model => Model.cartModel.product,item);
+                    @Html.HiddenFor(Model => Model.productModel.);
                     <input type="submit" value="Tilføj til kurv" />
-                }
+                }*@
             </div>
         </div>
     }
