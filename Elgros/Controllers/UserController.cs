@@ -12,7 +12,7 @@ namespace Elgros.Controllers
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IProductManager _productManager;
 
-        public UserController(ILogger<UserController> logger, IHttpContextAccessor contextAccessor,IProductManager productManager)
+        public UserController(ILogger<UserController> logger, IHttpContextAccessor contextAccessor, IProductManager productManager)
         {
             _productManager = productManager;
             _logger = logger;
@@ -29,14 +29,41 @@ namespace Elgros.Controllers
                 string productstring = _contextAccessor.HttpContext.Session.GetString("cart");
                 string[] products = productstring.Split(",");
                 IEnumerable<Product> ProductEnum;
-                
+
                 foreach (string product in products)
                 {
-                    ProductList.Add(await _productManager.GetByIdAsync(int.Parse(product)));
+                    if (product != "")
+                    {
+                        ProductList.Add(await _productManager.GetByIdAsync(int.Parse(product)));
+
+                    }
                 }
                 datamodel.Products = ProductList;
             }
-            return View("Cart",datamodel);
+            return View("Cart", datamodel);
+        }
+
+        [HttpPost("/cart/removeitem")]
+        public async Task<IActionResult> RemoveItemFromCart(int item)
+        {
+            string cartstring = _contextAccessor.HttpContext.Session.GetString("cart");
+            List<string> cartids = cartstring.Split(",").ToList();
+            string updatedcart = string.Empty;
+            int cartcount = 0;
+            if (cartids.Count > 0)
+            {
+                foreach (string cartid in cartids)
+                {
+                    if (cartid != item.ToString() && cartid != "")
+                    {
+                        updatedcart += cartid + ",";
+                        cartcount++;
+                    }
+                }
+                _contextAccessor.HttpContext.Session.SetInt32("cartcount",cartcount);
+                _contextAccessor.HttpContext.Session.SetString("cart", updatedcart);
+            }
+            return RedirectToAction("cart");
         }
     }
 }

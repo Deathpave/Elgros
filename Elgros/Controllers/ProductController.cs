@@ -43,17 +43,10 @@ namespace Elgros.Controllers
             }
             catch (Exception)
             {
-                _contextAccessor.HttpContext.Session.SetInt32("cartcount",1);
+                _contextAccessor.HttpContext.Session.SetInt32("cartcount", 1);
             }
             return RedirectToAction("Products");
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> AddItemToCart()
-        //{
-        //    string cart = _contextAccessor.HttpContext.Session.GetString("cart");
-        //    _contextAccessor.HttpContext.Session.SetString("cart",cart);
-
-        //}
+       
     }
 }
