@@ -70,7 +70,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = System.Data.CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",deleteEntity.Id}
+                {"@categoryId",deleteEntity.Id}
             };
 
             // Get datreader with result from dbcommand
@@ -111,7 +111,7 @@ namespace ElgrosLib.Repositories
             {
                 while (await dataReader.ReadAsync())
                 {
-                    Category category = CategoryFactory.CreateCategory((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "");
+                    Category category = CategoryFactory.CreateCategory((int?)dataReader.GetInt32("categoryId") ?? 0, dataReader.GetString("name") ?? "");
                     categories.Add(category);
                 }
                 await _database.CloseConnectionAsync();
@@ -132,7 +132,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",id}
+                {"@categoryId",id}
             };
 
             // Get datareader with result from dbcommand
@@ -147,7 +147,7 @@ namespace ElgrosLib.Repositories
                 Category category = null;
                 while (dataReader.Read())
                 {
-                    category = CategoryFactory.CreateCategory((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "");
+                    category = CategoryFactory.CreateCategory((int?)dataReader.GetInt32("categoryId") ?? 0, dataReader.GetString("name") ?? "");
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(category);
