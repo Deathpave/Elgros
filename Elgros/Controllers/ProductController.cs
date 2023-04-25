@@ -30,14 +30,22 @@ namespace Elgros.Controllers
         }
 
         [HttpPost("/products/saveitem")]
-        public async Task<IActionResult> AddItemToCart(GlobalModel datamodel)
+        public async Task<IActionResult> AddItemToCart(int item)
         {
             string cart = _contextAccessor.HttpContext.Session.GetString("cart");
-            cart += datamodel.cartModel.product + ",";
+            cart += item + ",";
             _contextAccessor.HttpContext.Session.SetString("cart", cart);
-            int cartcount = (int)_contextAccessor.HttpContext.Session.GetInt32("cartcount");
-            _contextAccessor.HttpContext.Session.SetInt32("cartcount", cartcount + 1);
-            return View("Products", datamodel);
+            try
+            {
+                int cartcount = (int)_contextAccessor.HttpContext.Session.GetInt32("cartcount");
+                _contextAccessor.HttpContext.Session.SetInt32("cartcount", cartcount + 1);
+
+            }
+            catch (Exception)
+            {
+                _contextAccessor.HttpContext.Session.SetInt32("cartcount",1);
+            }
+            return RedirectToAction("Products");
         }
 
         //[HttpPost]

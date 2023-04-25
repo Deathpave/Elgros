@@ -1,14 +1,19 @@
-﻿@{
+﻿@inject IHttpContextAccessor context;
+@model Elgros.Models.ProductModel
+@{
     ViewData["Title"] = "Kurv";
 }
 <div class="cartwrapper">
     <div class="itemwrapper">
-        <div class="iteminnerwrapper">
-            <img src="assets/hdmi.jpg" alt="">
-            <p>Hdmi Kabel (100m)</p>
-            <p>Pris 100kr</p>
-            <img class="smallicon" src="assets/x.png" alt="">
-        </div>
+        @foreach (var item in Model.Products)
+        {
+            <div class="iteminnerwrapper">
+                <img src="@item.PhotoUrl" alt="">
+                <p>@item.Name</p>
+                <p>Pris @item.Price kr</p>
+                <img class="smallicon" src="assets/x.png" alt="">
+            </div>
+        }
         <p style="float:right;">Total: 100kr</p>
     </div>
     <div class="billingform">

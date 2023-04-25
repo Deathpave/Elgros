@@ -17,3 +17,13 @@
 25-04-2023 09:56 - Error - Failed to execute sql command due to Connection must be valid and open.
 25-04-2023 09:56 - Error - Failed to execute sql command due to Connection must be valid and open.
 25-04-2023 09:57 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 10:01 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 10:03 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 10:03 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 10:04 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 10:06 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 10:15 - Error - Failed to execute sql command due to Connection must be valid and open.
+25-04-2023 11:37 - Error - Failed to execute sql command due to Parameter 'productId' not found in the collection.
+25-04-2023 11:37 - Error - Failed to execute sql command due to Parameter 'productId' not found in the collection.
+25-04-2023 11:40 - Error - Failed to execute sql command due to Parameter 'productId' not found in the collection.
+25-04-2023 11:44 - Error - Failed to execute sql command due to Parameter 'productId' not found in the collection.
