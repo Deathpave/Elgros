@@ -100,7 +100,7 @@ namespace ElgrosLib.Managers
             {
                 Decryption decryption = new Decryption();
                 UserInformation encryptedUserInformation = _repository.GetByIdAsync(id).Result;
-                UserInformation userInformation = UserInformationFactory.CreateUserInformation(id, decryption.DecryptString(encryptedUserInformation.Name, id.ToString()),
+                UserInformation userInformation = UserInformationFactory.CreateUserInformation(id, decryption.DecryptString(encryptedUserInformation.FirstName, id.ToString()),
                     decryption.DecryptString(encryptedUserInformation.LastName, id.ToString()), decryption.DecryptString(encryptedUserInformation.Email, id.ToString()),
                     decryption.DecryptString(encryptedUserInformation.Address, id.ToString()), decryption.DecryptString(encryptedUserInformation.Zipcode, id.ToString()),
                     decryption.DecryptString(encryptedUserInformation.City, id.ToString()), decryption.DecryptString(encryptedUserInformation.Phone, id.ToString()));

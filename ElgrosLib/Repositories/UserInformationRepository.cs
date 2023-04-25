@@ -31,7 +31,7 @@ namespace ElgrosLib.Repositories
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
                 {"@id",createEntity.Id},
-                {"@name",createEntity.Name},
+                {"@name",createEntity.FirstName},
                 {"@lastName",createEntity.LastName},
                 {"@email",createEntity.Email},
                 {"@address",createEntity.Address},
@@ -175,7 +175,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",updateEntity.Name},
+                {"@name",updateEntity.FirstName},
                 {"@lastName",updateEntity.LastName},
                 {"@email",updateEntity.Email},
                 {"@address",updateEntity.Address},
