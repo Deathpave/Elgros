@@ -65,5 +65,11 @@ namespace Elgros.Controllers
             }
             return RedirectToAction("cart");
         }
+
+        [HttpPost("/cart/order")]
+        public async Task<IActionResult> Order()
+        {
+
+        }
     }
 }
