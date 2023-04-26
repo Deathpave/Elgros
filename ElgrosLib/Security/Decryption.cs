@@ -40,13 +40,13 @@ namespace ElgrosLib.Security
             CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Write);
 
             // Decrypt input as bytes
-            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            byte[] inputBytes = Convert.FromBase64String(input);
             cryptoStream.Write(inputBytes, 0, inputBytes.Length);
             cryptoStream.FlushFinalBlock();
             cryptoStream.Close();
 
             // Convert bytes to base64 string
-            string result = Convert.ToBase64String(memoryStream.ToArray());
+            string result = Encoding.UTF8.GetString(memoryStream.ToArray());
             return result;
         }
     }
