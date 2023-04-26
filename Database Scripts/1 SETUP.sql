@@ -39,8 +39,8 @@ CREATE TABLE `users`
 CREATE TABLE `userinformation`
 (
 `id` INT NOT NULL PRIMARY KEY,
-`firstName` VARCHAR(20),
-`lastName` VARCHAR(20),
+`firstName` VARCHAR(255),
+`lastName` VARCHAR(255),
 `email` VARCHAR(255),
 `address` VARCHAR(255),
 `zipcode` VARCHAR(255),

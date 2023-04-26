@@ -67,14 +67,14 @@ namespace ElgrosLibTester.ManagerTests
             await _UserManager.DeleteAsync(user);
 
             //Assert
-            Assert.That(requestedUserInformation.Id, Is.EqualTo(testUserInformation.Id));
-            Assert.That(requestedUserInformation.FirstName, Is.EqualTo(testUserInformation.FirstName));
-            Assert.That(requestedUserInformation.LastName, Is.EqualTo(testUserInformation.LastName));
-            Assert.That(requestedUserInformation.Email, Is.EqualTo(testUserInformation.Email));
-            Assert.That(requestedUserInformation.Address, Is.EqualTo(testUserInformation.Address));
-            Assert.That(requestedUserInformation.Zipcode, Is.EqualTo(testUserInformation.Zipcode));
-            Assert.That(requestedUserInformation.City, Is.EqualTo(testUserInformation.City));
-            Assert.That(requestedUserInformation.Phone, Is.EqualTo(testUserInformation.Phone));
+            Assert.That(requestedUserInformation.Id, Is.EqualTo(1000));
+            Assert.That(requestedUserInformation.FirstName, Is.EqualTo("Test"));
+            Assert.That(requestedUserInformation.LastName, Is.EqualTo("Testsen"));
+            Assert.That(requestedUserInformation.Email, Is.EqualTo("Test@Test.com"));
+            Assert.That(requestedUserInformation.Address, Is.EqualTo("TestGade"));
+            Assert.That(requestedUserInformation.Zipcode, Is.EqualTo("4290"));
+            Assert.That(requestedUserInformation.City, Is.EqualTo("TestBy"));
+            Assert.That(requestedUserInformation.Phone, Is.EqualTo("12345678"));
         }
 
         /// <summary>
