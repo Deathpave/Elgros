@@ -9,6 +9,8 @@ namespace ElgrosLib.Managers
     public class ProductManager : IProductManager
     {
         private readonly ProductRepository _repository;
+        private IEnumerable<Product> _products;
+        private TimeSpan _lastLoaded;
 
         public ProductManager(IDatabase database)
         {
@@ -88,7 +90,16 @@ namespace ElgrosLib.Managers
         {
             try
             {
-                return _repository.GetAllAsync();
+                if (_lastLoaded.Add(new TimeSpan(0, 5, 0)) < DateTime.Now.TimeOfDay || _products == null)
+                {
+                    _products = _repository.GetAllAsync().Result;
+                    _lastLoaded = DateTime.Now.TimeOfDay;
+                    return Task.FromResult(_products);
+                }
+                else
+                {
+                    return Task.FromResult(_products);
+                }
             }
             catch (Exception e)
             {
