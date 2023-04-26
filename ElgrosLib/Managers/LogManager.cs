@@ -16,7 +16,7 @@ namespace ElgrosLib.Managers
             _logRepository = new LogRepository(database);
         }
 
-        public static LogManager GetLogManager(IDatabase database)
+        public static LogManager GetLogManager(IDatabase database, string errorLogLocation = "")
         {
             if (_logManager != null)
             {
@@ -25,6 +25,7 @@ namespace ElgrosLib.Managers
             else
             {
                 _logManager = new LogManager(database);
+                LogFactory.Initialize(errorLogLocation);
                 return _logManager;
             }
         }
