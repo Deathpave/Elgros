@@ -23,7 +23,8 @@ namespace Elgros
 
             // Initialize an instance of an IDatabase for manager injections
             config["elgrosdb"] = config.GetConnectionString("DefaultConnection");
-            var db = DatabaseFactory.CreateDatabase(config, "elgrosdb", ElgrosLib.Adapters.DatabaseTypes.MySql);
+            DatabaseManager dbmanager = new DatabaseManager();
+            var db = dbmanager.CreateDatabase(config, "elgrosdb", ElgrosLib.Adapters.DatabaseTypes.MySql);
 
             // Manager dependency
             builder.Services.AddScoped<ICategoryManager, CategoryManager>(manager => new CategoryManager(db));
