@@ -133,7 +133,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>Category Object</returns>
         private Category CreateTestCategory()
         {
-            Category testObject = CategoryFactory.CreateCategory(1000, "Test Category");
+            Category testObject = _manager.ConvertToCategory("Test Category", 1000);
             return testObject;
         }
 
@@ -143,7 +143,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>Category Object</returns>
         private Category CreateUpdateTestCategory()
         {
-            Category testObject = CategoryFactory.CreateCategory(1000, "Updated Test Category");
+            Category testObject = _manager.ConvertToCategory("Updated Test Category", 1000);
             return testObject;
         }
 

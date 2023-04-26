@@ -114,8 +114,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>User Object</returns>
         private User CreateTestUser()
         {
-            User hashedUSer = _manager.ConvertToUser("test user", "123");
-            User testUser = UserFactory.CreateUser(1000, hashedUSer.Username, hashedUSer.Password);
+            User testUser = _manager.ConvertToUser("test user", "123", 1000);
             return testUser;
         }
 
@@ -125,8 +124,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>User Object</returns>
         private User CreateUpdateTestUser()
         {
-            User hashedUser = _manager.ConvertToUser("updated test user", "321");
-            User testUser = UserFactory.CreateUser(1000, hashedUser.Username, hashedUser.Password);
+            User testUser = _manager.ConvertToUser("updated test user", "321", 1000);
             return testUser;
         }
     }

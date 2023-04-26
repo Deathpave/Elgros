@@ -15,7 +15,7 @@ namespace ElgrosLib.Managers
             _repository = new CategoryRepository(database);
         }
 
-        public Category ConvertToCategory(string name)
+        public Category ConvertToCategory(string name, int id = 0)
         {
             try
             {
