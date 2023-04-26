@@ -151,7 +151,7 @@ namespace ElgrosLib.Repositories
                 UserInformation user = null;
                 while (dataReader.Read())
                 {
-                    user = UserInformationFactory.CreateUserInformation((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("name") ?? "",
+                    user = UserInformationFactory.CreateUserInformation((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("firstname") ?? "",
                         dataReader.GetString("lastName") ?? "", dataReader.GetString("email") ?? "", dataReader.GetString("address") ?? "",
                         dataReader.GetString("zipcode") ?? "", dataReader.GetString("city") ?? "", dataReader.GetString("phone") ?? "");
                 }
