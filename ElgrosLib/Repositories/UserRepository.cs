@@ -30,8 +30,9 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@username",createEntity.Username},
-                {"@password",createEntity.Password}
+                {"@UserId",createEntity.Id},
+                {"@newUsername",createEntity.Username},
+                {"@newPassword",createEntity.Password}  
             };
 
             // Get datareader with result from the dbcommand
@@ -65,7 +66,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@userId",deleteEntity.Id}
+                {"@UserId",deleteEntity.Id}
             };
 
             // Get datareader with result from dbcommand
@@ -128,7 +129,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@userId",id}
+                {"@UserId",id}
             };
 
             // Get datareader with result from dbcommand
@@ -163,7 +164,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",name}
+                {"@UserName",name}
             };
 
             // Get datareader with result from dbcommand
@@ -200,8 +201,9 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@username",updateEntity.Username},
-                {"@password",updateEntity.Password}
+                {"@UserId",updateEntity.Id},
+                {"@newUsername",updateEntity.Username},
+                {"@newPassword",updateEntity.Password}
             };
 
             // Get datareader with result from the dbcommand

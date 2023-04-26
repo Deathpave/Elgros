@@ -18,18 +18,16 @@ DROP TABLE IF EXISTS `logTypes`;
 ####################################################*/
 
 CREATE TABLE `categories` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL
+  );
 
 CREATE TABLE `subCategories` ( 
-`id` INT NOT NULL AUTO_INCREMENT, 
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 `name` VARCHAR(255) NOT NULL,
 `categoryId` int NOT NULL,
-PRIMARY KEY (id),
 FOREIGN KEY (categoryId) REFERENCES categories (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+);
 
 CREATE TABLE `users` 
 ( 
@@ -63,7 +61,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (id),
   FOREIGN KEY (categoryId) REFERENCES categories (id),
   FOREIGN KEY (subcategoryId) REFERENCES subCategories (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  );
 
 CREATE TABLE `log` 
 ( 

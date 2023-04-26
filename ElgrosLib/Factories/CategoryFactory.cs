@@ -14,7 +14,7 @@ namespace ElgrosLib.Factories
         /// <returns></returns>
         internal static Category CreateCategory(int id, string name)
         {
-            return new Category(0, name);
+            return new Category(id, name);
         }
     }
 }

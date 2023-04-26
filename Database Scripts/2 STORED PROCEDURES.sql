@@ -228,7 +228,7 @@ DROP PROCEDURE IF EXISTS `spGetAllUsers`;
 
 -- Create operation
 DELIMITER //
-CREATE PROCEDURE `spCreateUser` (IN UserId INT, IN username VARCHAR(255), IN password VARCHAR(255))
+CREATE PROCEDURE `spCreateUser` (IN UserId INT, IN newUsername VARCHAR(255), IN newPassword VARCHAR(255))
 BEGIN
 	IF(UserId IS NOT NULL OR 0) 
     THEN

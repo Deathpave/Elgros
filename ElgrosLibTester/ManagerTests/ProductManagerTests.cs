@@ -139,7 +139,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>Product Object</returns>
         private Product CreateTestProduct()
         {
-            Product testObject = ProductFactory.CreateProduct(1000, "Test Product", "This is a test", 100, 100, "", 0, 0);
+            Product testObject = ProductFactory.CreateProduct(1000, "Test Product", "This is a test", 100, 100, "", 1, 1);
             return testObject;
         }
 
@@ -149,7 +149,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>Product Object</returns>
         private Product CreateUpdateTestProduct()
         {
-            Product testObject = ProductFactory.CreateProduct(1000, "Updated Test Product", "This is an update test", 200, 50, "", 0, 0);
+            Product testObject = ProductFactory.CreateProduct(1000, "Updated Test Product", "This is an update test", 200, 50, "", 1, 1);
             return testObject;
         }
     }

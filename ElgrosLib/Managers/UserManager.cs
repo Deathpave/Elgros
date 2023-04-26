@@ -150,5 +150,28 @@ namespace ElgrosLib.Managers
                    LogManager.GetLogManager(null).ConvertToLog(
                    MessageTypes.Error, $"UserManager could not write log to database\n{exception.Message}", LogTypes.File).Result);
         }
+
+        public async Task<User> GetByNameAsync(string name)
+        {
+            try
+            {
+                return await _repository.GetByNameAsync(name);
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    await LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"UserManager could not convert get user by name\n{e.Message}", LogTypes.Database).Result);
+                    return null;
+                }
+                catch (Exception f)
+                {
+                    LogErrorLocally(f);
+                    return null;
+                }
+            }
+        }
     }
 }

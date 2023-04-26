@@ -5,8 +5,8 @@
         private string _username;
         private string _password;
 
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Username { get { return _username; } }
+        public string Password { get { return _password; } }
 
         internal User(int id, string username, string password) : base(id)
         {

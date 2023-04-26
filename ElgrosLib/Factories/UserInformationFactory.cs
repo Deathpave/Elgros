@@ -10,11 +10,11 @@ namespace ElgrosLib.Factories
         /// <summary>
         /// Create userinformation instance
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="firstname"></param>
         /// <returns></returns>
         internal static UserInformation CreateUserInformation(int id, string name, string lastname, string email, string address, string zipcode, string city, string phone)
         {
-            return new UserInformation(id, name, lastname, email, address, zipcode, city, phone);
+            return new UserInformation(id, firstname, lastname, email, address, zipcode, city, phone);
         }
     }
 }

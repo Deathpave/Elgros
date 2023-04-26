@@ -26,18 +26,18 @@ namespace ElgrosLib.Repositories
             int affectedRows = 0;
 
             // Create dbcommand with parameters
-            DbCommand command = new SqlCommand("spCreateUserInformatino");
+            DbCommand command = new SqlCommand("spCreateUserInformation");
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@userInformationId",createEntity.Id},
-                {"@name",createEntity.FirstName},
-                {"@lastName",createEntity.LastName},
-                {"@email",createEntity.Email},
-                {"@address",createEntity.Address},
-                {"@zipcode",createEntity.Zipcode},
-                {"@city",createEntity.City},
-                {"@phone",createEntity.Phone}
+                {"@UserId",createEntity.Id},
+                {"@newFirstName",createEntity.FirstName},
+                {"@newLastName",createEntity.LastName},
+                {"@newEmail",createEntity.Email},
+                {"@newAddress",createEntity.Address},
+                {"@newZipcode",createEntity.Zipcode},
+                {"@newCity",createEntity.City},
+                {"@newPhone",createEntity.Phone}
             };
 
             // Get datareader with result from the dbcommand
@@ -71,7 +71,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@userInformationId",deleteEntity.Id}
+                {"@UserId",deleteEntity.Id}
             };
 
             // Get datareader with result from dbcommand
@@ -136,7 +136,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@userInformationId",id}
+                {"@UserId",id}
             };
 
             // Get datareader with result from dbcommand
@@ -175,13 +175,14 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",updateEntity.FirstName},
-                {"@lastName",updateEntity.LastName},
-                {"@email",updateEntity.Email},
-                {"@address",updateEntity.Address},
-                {"@zipcode",updateEntity.Zipcode},
-                {"@city",updateEntity.City},
-                {"@phone",updateEntity.Phone}
+                {"@UserId",updateEntity.Id},
+                {"@newFirstName",updateEntity.FirstName},
+                {"@newLastName",updateEntity.LastName},
+                {"@newEmail",updateEntity.Email},
+                {"@newAddress",updateEntity.Address},
+                {"@newZipcode",updateEntity.Zipcode},
+                {"@newCity",updateEntity.City},
+                {"@newPhone",updateEntity.Phone}
             };
 
             // Get datareader with result from the dbcommand

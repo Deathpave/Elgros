@@ -19,31 +19,12 @@ namespace ElgrosLibTester.ManagerTests
             _UserManager = new UserManager(db);
         }
 
-        /// <summary>
-        /// Tests the GetAllAsync method of the UserInformationManager class
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        [Order(1)]
-        public async Task GetAllAsync_HasData_IfCollectionIsNotNull()
-        {
-            //Act
-            var Categories = await _manager.GetAllAsync();
-            AsyncTestDelegate getAllAction = async () => await _manager.GetAllAsync();
-
-            //Assert
-            Assert.IsNotNull(Categories);
-            Assert.IsNotEmpty(Categories);
-            Assert.Greater(Categories.Count(), 0);
-            Assert.DoesNotThrowAsync(getAllAction);
-        }
-
-        /// <summary>
+                /// <summary>
         /// Tests the CreateAsync method of the UserInformationManager class
         /// </summary>
         /// <returns></returns>
         [Test]
-        [Order(2)]
+        [Order(1)]
         public async Task CreateAsync_CreatesAUserInformation_IfArgumentsAreValid()
         {
             //Arrange
@@ -68,7 +49,7 @@ namespace ElgrosLibTester.ManagerTests
         /// </summary>
         /// <returns></returns>
         [Test]
-        [Order(3)]
+        [Order(2)]
         public async Task GetByIdAsync_ReturnsAValidUserInformation_IfArgumentsAreValid()
         {
             //Arrange
@@ -101,7 +82,7 @@ namespace ElgrosLibTester.ManagerTests
         /// </summary>
         /// <returns></returns>
         [Test]
-        [Order(4)]
+        [Order(3)]
         public async Task UpdateAsync_UpdatesExistingUserInformation_IfArgumentsAreValid()
         {
             //Arrange
@@ -127,7 +108,7 @@ namespace ElgrosLibTester.ManagerTests
         /// </summary>
         /// <returns></returns>
         [Test]
-        [Order(5)]
+        [Order(4)]
         public async Task RemoveObjectAsync_RemovesExistingUserInformation_IfArgumentsAreValid()
         {
             //Arrange

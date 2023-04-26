@@ -35,13 +35,14 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name", createEntity.Name},
-                {"@description",createEntity.Description},
-                {"@price",createEntity.Price},
-                {"@quantity",createEntity.Quantity},
-                {"@photoUrl",createEntity.PhotoUrl},
-                {"@categoryId",createEntity.CategoryId},
-                {"@subCategoryId",createEntity.SubCategoryId}
+                {"@productId", createEntity.Id},
+                {"@newName", createEntity.Name},
+                {"@newDescription",createEntity.Description},
+                {"@newPrice",createEntity.Price},
+                {"@newQuantity",createEntity.Quantity},
+                {"@newPhotoUrl",createEntity.PhotoUrl},
+                {"@newCategoryId",createEntity.CategoryId},
+                {"@newSubCategoryId",createEntity.SubCategoryId}
             };
 
             // Get datareader with result from the dbcommand
@@ -178,13 +179,14 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name", updateEntity.Name},
-                {"@description",updateEntity.Description},
-                {"@price",updateEntity.Price},
-                {"@quantity",updateEntity.Quantity},
-                {"@photoUrl",updateEntity.PhotoUrl},
-                {"@categoryId",updateEntity.CategoryId},
-                {"@subCategoryId",updateEntity.SubCategoryId}
+                {"@productId", updateEntity.Id},
+                {"@newName", updateEntity.Name},
+                {"@newDescription",updateEntity.Description},
+                {"@newPrice",updateEntity.Price},
+                {"@newQuantity",updateEntity.Quantity},
+                {"@newPhotoUrl",updateEntity.PhotoUrl},
+                {"@newCategoryId",updateEntity.CategoryId},
+                {"@newSubCategoryId",updateEntity.SubCategoryId}
             };
 
             // Get datareader with result from the dbcommand
