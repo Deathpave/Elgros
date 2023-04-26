@@ -173,5 +173,15 @@ namespace ElgrosLib.Managers
                 }
             }
         }
+
+        public async Task<string> CreateUserToken(User user)
+        {
+            return new Encryption().EncryptString(user.Id.ToString(), "Id");
+        }
+
+        public async Task<int> GetUserIdFromUserToken(string token)
+        {
+            return int.Parse(new Decryption().DecryptString(token, "Id"));
+        }
     }
 }
