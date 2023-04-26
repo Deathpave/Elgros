@@ -1,29 +1,41 @@
-﻿@{
+﻿@inject IHttpContextAccessor context;
+@model Elgros.Models.ProductModel
+@{
     ViewData["Title"] = "Kurv";
 }
 <div class="cartwrapper">
     <div class="itemwrapper">
-        <div class="iteminnerwrapper">
-            <img src="assets/hdmi.jpg" alt="">
-            <p>Hdmi Kabel (100m)</p>
-            <p>Pris 100kr</p>
-            <img class="smallicon" src="assets/x.png" alt="">
-        </div>
+        @foreach (var item in Model.Products)
+        {
+            <div class="iteminnerwrapper">
+                <img src="@item.PhotoUrl" alt="">
+                <p>@item.Name</p>
+                <p>Pris @item.Price kr</p>
+                <form action="cart/removeitem" method="post">
+                    <input type="hidden" value="@item.Id" name="item" />
+                    <input class="smallicon" type="image" src="assets/x.png" alt="Submit Form">
+                </form>
+                
+            </div>
+        }
         <p style="float:right;">Total: 100kr</p>
     </div>
-    <div class="billingform">
-        <p>Navn</p>
-        <input type="field">
-        <p>Efternavn</p>
-        <input type="field">
-        <p>Mail</p>
-        <input type="field">
-        <p>Adresse</p>
-        <input type="field">
-        <p>Reg</p>
-        <input type="field">
-        <p>4 Cifre</p>
-        <input type="field">
-        <button>Køb</button>
-    </div>
+    <form action="cart/order" method="post">
+        <div class="billingform">
+            <p>Navn</p>
+            <input type="field">
+            <p>Efternavn</p>
+            <input type="field">
+            <p>Mail</p>
+            <input type="field">
+            <p>Adresse</p>
+            <input type="field">
+            <p>Reg</p>
+            <input type="field">
+            <p>4 Cifre</p>
+            <input type="field">
+            <button alt="submit form">Køb</button>
+        </div>
+    </form>
+    
 </div>

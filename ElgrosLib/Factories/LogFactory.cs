@@ -1,4 +1,5 @@
-﻿using ElgrosLib.Interfaces;
+﻿using ElgrosLib.DataModels;
+using ElgrosLib.Interfaces;
 using ElgrosLib.Logs;
 
 namespace ElgrosLib.Factories
@@ -26,19 +27,19 @@ namespace ElgrosLib.Factories
         /// <param name="message"></param>
         /// <param name="messageType"></param>
         /// <returns></returns>
-        public static ILog CreateLog(LogTypes type, string message, MessageTypes messageType)
+        public static Log CreateLog(LogTypes type, string message, MessageTypes messageType)
         {
-            ILog log = null;
+            Log log = null;
             switch (type)
             {
                 case LogTypes.Database:
                     log = new DatabaseLog(0, messageType, message, DateTime.Now);
                     break;
                 case LogTypes.File:
-                    log = new FileLog(message, DateTime.Now, messageType, _errorLogLocation);
+                    log = new FileLog(0, message, DateTime.Now, messageType, _errorLogLocation);
                     break;
                 case LogTypes.Console:
-                    log = new ConsoleLog(message, DateTime.Now, messageType);
+                    log = new ConsoleLog(0, messageType, message, DateTime.Now);
                     break;
             }
             return log;

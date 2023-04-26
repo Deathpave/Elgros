@@ -16,7 +16,7 @@ namespace ElgrosLib.Repositories
         /// Constructor that sets the database
         /// </summary>
         /// <param name="database"></param>
-        public ProductRepository(IDatabase database)
+        internal ProductRepository(IDatabase database)
         {
             _database = database;
         }
@@ -75,7 +75,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",deleteEntity.Id}
+                {"@productId",deleteEntity.Id}
             };
 
             // Get datareader with result from dbcommand
@@ -139,7 +139,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",id}
+                {"@productId",id}
             };
 
             // Get datareader with result from dbcommand

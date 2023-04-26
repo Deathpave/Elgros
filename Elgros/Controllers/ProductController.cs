@@ -2,6 +2,7 @@
 using ElgrosLib.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Mysqlx.Crud;
 using MySqlX.XDevAPI;
 
 namespace Elgros.Controllers
@@ -22,16 +23,30 @@ namespace Elgros.Controllers
         [HttpGet("/products")]
         public async Task<IActionResult> Products()
         {
-            ProductModel model = new ProductModel(_productManager.GetAllAsync().Result);
+            ProductModel productmodel = new ProductModel(_productManager.GetAllAsync().Result);
+            GlobalModel model = new GlobalModel();
+            model.productModel = productmodel;
             return View("Products", model);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddItemToCart()
-        //{
-        //    string cart = _contextAccessor.HttpContext.Session.GetString("cart");
-        //    _contextAccessor.HttpContext.Session.SetString("cart",cart);
+        [HttpPost("/products/saveitem")]
+        public async Task<IActionResult> AddItemToCart(int item)
+        {
+            string cart = _contextAccessor.HttpContext.Session.GetString("cart");
+            cart += item + ",";
+            _contextAccessor.HttpContext.Session.SetString("cart", cart);
+            try
+            {
+                int cartcount = (int)_contextAccessor.HttpContext.Session.GetInt32("cartcount");
+                _contextAccessor.HttpContext.Session.SetInt32("cartcount", cartcount + 1);
 
-        //}
+            }
+            catch (Exception)
+            {
+                _contextAccessor.HttpContext.Session.SetInt32("cartcount", 1);
+            }
+            return RedirectToAction("Products");
+        }
+       
     }
 }

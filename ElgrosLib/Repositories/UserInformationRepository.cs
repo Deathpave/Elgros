@@ -11,7 +11,7 @@ namespace ElgrosLib.Repositories
     {
         private readonly IDatabase _database;
 
-        public UserInformationRepository(IDatabase database)
+        internal UserInformationRepository(IDatabase database)
         {
             _database = database;
         }
@@ -30,8 +30,8 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",createEntity.Id},
-                {"@name",createEntity.Name},
+                {"@userInformationId",createEntity.Id},
+                {"@name",createEntity.FirstName},
                 {"@lastName",createEntity.LastName},
                 {"@email",createEntity.Email},
                 {"@address",createEntity.Address},
@@ -71,7 +71,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",deleteEntity.Id}
+                {"@userInformationId",deleteEntity.Id}
             };
 
             // Get datareader with result from dbcommand
@@ -136,7 +136,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",id}
+                {"@userInformationId",id}
             };
 
             // Get datareader with result from dbcommand
@@ -175,7 +175,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",updateEntity.Name},
+                {"@name",updateEntity.FirstName},
                 {"@lastName",updateEntity.LastName},
                 {"@email",updateEntity.Email},
                 {"@address",updateEntity.Address},

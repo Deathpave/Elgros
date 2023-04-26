@@ -11,7 +11,7 @@ namespace ElgrosLib.Repositories
     {
         private readonly IDatabase _database;
 
-        public UserRepository(IDatabase database)
+        internal UserRepository(IDatabase database)
         {
             _database = database;
         }
@@ -65,7 +65,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",deleteEntity.Id}
+                {"@userId",deleteEntity.Id}
             };
 
             // Get datareader with result from dbcommand
@@ -128,7 +128,7 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@id",id}
+                {"@userId",id}
             };
 
             // Get datareader with result from dbcommand
@@ -159,7 +159,7 @@ namespace ElgrosLib.Repositories
         public async Task<User> GetByNameAsync(string name)
         {
             // Create dbcommand
-            DbCommand command = new SqlCommand("spGetUserById");
+            DbCommand command = new SqlCommand("spGetUserByName");
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -178,7 +178,7 @@ namespace ElgrosLib.Repositories
                 User user = null;
                 while (dataReader.Read())
                 {
-                    user = UserFactory.CreateUser((int?)dataReader.GetInt32("Id") ?? 0, dataReader.GetString("username") ?? "", dataReader.GetString("password") ?? "");
+                    user = UserFactory.CreateUser((int?)dataReader.GetInt32("id") ?? 0, dataReader.GetString("username") ?? "", dataReader.GetString("password") ?? "");
                 }
                 await _database.CloseConnectionAsync();
                 return await Task.FromResult(user);

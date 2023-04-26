@@ -2,6 +2,7 @@
 using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Repositories;
+using ElgrosLib.Logs;
 
 namespace ElgrosLib.Managers
 {
@@ -24,12 +25,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"SubCategoryManager could not convert data to subcategory\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"SubCategoryManager could not convert data to subcategory\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -45,12 +48,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"SubCategoryManager could not create subcategory\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"SubCategoryManager could not create subcategory\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -66,12 +71,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"SubCategoryManager could not delete subcategory\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"SubCategoryManager could not delete subcategory\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -87,12 +94,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"SubCategoryManager could not get all subcategories\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"SubCategoryManager could not get all subcategories\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -108,12 +117,14 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"SubCategoryManager could get subcategory by id\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"SubCategoryManager could get subcategory by id\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
@@ -129,15 +140,24 @@ namespace ElgrosLib.Managers
             {
                 try
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.Database, $"SubCategoryManager could not update subcategory\n{e.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogManager.GetLogManager(null).CreateAsync(
+                    LogManager.GetLogManager(null).ConvertToLog(
+                    MessageTypes.Error, $"SubCategoryManager could not update subcategory\n{e.Message}", LogTypes.Database).Result);
                     return null;
                 }
                 catch (Exception f)
                 {
-                    LogFactory.CreateLog(Logs.LogTypes.File, $"SubCategoryManager could not write log to database\n{f.Message}", Logs.MessageTypes.Error).WriteLog();
+                    LogErrorLocally(f);
                     return null;
                 }
             }
+        }
+
+        public void LogErrorLocally(Exception exception)
+        {
+            LogManager.GetLogManager(null).CreateAsync(
+                   LogManager.GetLogManager(null).ConvertToLog(
+                   MessageTypes.Error, $"SubCategoryManager could not write log to database\n{exception.Message}", LogTypes.File).Result);
         }
     }
 }

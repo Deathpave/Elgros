@@ -17,8 +17,15 @@
             <div class="toolbar">
                 <img class="icon" src="assets/support.png" alt="">
                 <img class="icon" src="assets/fast-delivery.png" alt="">
-                <img class="icon" src="assets/cart.png" alt="">
-                <a> @context.HttpContext.Session.GetString("CartCount")</a>
+                <div style="display:flex; flex-direction:row;">
+                    <a href="/cart"><img class="icon" src="assets/cart.png" alt=""></a>
+                    @if (context.HttpContext.Session.Keys.Contains("cartcount"))
+                    {
+                        <a style="margin-left: -30px; color:white; font-weight:bold;"> @context.HttpContext.Session.GetInt32("cartcount").ToString()</a>
+                    }else{
+                        <a style="margin-left: -30px; color:white; font-weight:bold;"> 0</a>
+                    }
+                </div>
             </div>
         </div>
         <div class="navbar">
@@ -50,11 +57,11 @@
         <div id="products">
         </div>
     </header>
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

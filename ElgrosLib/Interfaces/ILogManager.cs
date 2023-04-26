@@ -1,9 +1,9 @@
 ﻿using ElgrosLib.DataModels;
+using ElgrosLib.Logs;
 
 namespace ElgrosLib.Interfaces
 {
-    internal interface IProductRepository : IRepository<Product>
+    public interface ILogManager : IManager<Log>
     {
-       
     }
 }
