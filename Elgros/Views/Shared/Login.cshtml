@@ -1,5 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Elgros.Models.UserModel
 @{
+    ViewData["Title"] = "Login";
 }
+<div>
+    @using (Html.BeginForm("login/confirm", "user", FormMethod.Post))
+    {
+        @Html.TextBoxFor(Model => Model.username);
+        @Html.TextBoxFor(Model => Model.password);
+        <button>Login</button>
+    }
+    @* <form action="login/confirm" formaction="Post">
+        <input type="username" name="username"/>
+        <input type="password" name="psswd"/>
+        <button>Login</button>
+    </form>*@
+</div>

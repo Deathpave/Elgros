@@ -11,12 +11,14 @@ namespace Elgros.Controllers
         private readonly ILogger<UserController> _logger;
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IProductManager _productManager;
+        private readonly IUserManager _userManager;
 
-        public UserController(ILogger<UserController> logger, IHttpContextAccessor contextAccessor, IProductManager productManager)
+        public UserController(ILogger<UserController> logger, IHttpContextAccessor contextAccessor, IProductManager productManager, IUserManager userManager)
         {
             _productManager = productManager;
             _logger = logger;
             _contextAccessor = contextAccessor;
+            _userManager = userManager; 
         }
 
         [HttpGet("/cart")]
@@ -66,10 +68,23 @@ namespace Elgros.Controllers
             return RedirectToAction("cart");
         }
 
-        [HttpPost("/cart/order")]
-        public async Task<IActionResult> Order()
-        {
+        //[HttpPost("/cart/order")]
+        //public async Task<IActionResult> Order()
+        //{
 
+        //}
+
+        [HttpGet("/login")]
+        public async Task<IActionResult> Login()
+        {
+            return View("Login");
+        }
+
+        [HttpPost("login/confirm")]
+        public async Task<IActionResult> ConfirmLogin(string username,string password)
+        {
+            _userManager.CheckLogin(username, password);
+            return View("Login");
         }
     }
 }
