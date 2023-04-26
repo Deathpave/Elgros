@@ -7,7 +7,7 @@ namespace ElgrosLib.Factories
     /// <summary>
     /// Factory that handles the creation of Log objects
     /// </summary>
-    public static class LogFactory
+    internal static class LogFactory
     {
         private static string _errorLogLocation;
 
@@ -15,7 +15,7 @@ namespace ElgrosLib.Factories
         /// Sets needed data for factory
         /// </summary>
         /// <param name="errorLogLocation"></param>
-        public static void Initialize(string errorLogLocation)
+        internal static void Initialize(string errorLogLocation)
         {
             _errorLogLocation = errorLogLocation;
         }
@@ -27,7 +27,7 @@ namespace ElgrosLib.Factories
         /// <param name="message"></param>
         /// <param name="messageType"></param>
         /// <returns></returns>
-        public static Log CreateLog(LogTypes type, string message, MessageTypes messageType)
+        internal static Log CreateLog(LogTypes type, string message, MessageTypes messageType)
         {
             Log log = null;
             switch (type)
