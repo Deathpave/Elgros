@@ -174,9 +174,9 @@ namespace ElgrosLib.Managers
             }
         }
 
-        public async Task<string> CreateUserToken(User user)
+        public async Task<string> CreateUserToken(int id)
         {
-            return new Encryption().EncryptString(user.Id.ToString(), "Id");
+            return new Encryption().EncryptString(id.ToString(), "Id");
         }
 
         public async Task<int> GetUserIdFromUserToken(string token)
