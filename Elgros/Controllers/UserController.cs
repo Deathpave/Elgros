@@ -83,13 +83,13 @@ namespace Elgros.Controllers
         [HttpPost("user/confirm")]
         public async Task<IActionResult> ConfirmLogin(string username,string password)
         {
-            //int userloggedin = await _userManager.CheckLogin(username, password);
-            //_userManager.
-            //if (userloggedin)
-            //{
-            //    _contextAccessor.HttpContext.Session.SetString("cart", updatedcart);
-            //}
-            //return RedirectToAction("cart");
+            int userid = await _userManager.CheckLogin(username, password);
+            string userlogintoken = _userManager.CreateUserToken(userid);
+            if (userloggedin)
+            {
+                _contextAccessor.HttpContext.Session.SetString("tkn", userlogintoken);
+            }
+            return RedirectToAction("cart");
         }
     }
 }
