@@ -21,35 +21,15 @@ namespace ElgrosLibTester.ManagerTests
         }
 
         /// <summary>
-        /// Tests the GetAllAsync method of the UserManager class
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        [Order(1)]
-        public async Task GetAllAsync_HasData_IfCollectionIsNotNull()
-        {
-            //Act
-            var users = await _manager.GetAllAsync();
-            AsyncTestDelegate getAllAction = async () => await _manager.GetAllAsync();
-
-            //Assert
-            Assert.IsNotNull(users);
-            Assert.IsNotEmpty(users);
-            Assert.Greater(users.Count(), 0);
-            Assert.DoesNotThrowAsync(getAllAction);
-        }
-
-        /// <summary>
         /// Tests the CreateAsync method of the UserManager class
         /// </summary>
         /// <returns></returns>
         [Test]
-        [Order(2)]
+        [Order(1)]
         public async Task CreateAsync_CreatesAUser_IfArgumentsAreValid()
         {
             //Arrange
             User testUser = CreateTestUser();
-
 
             //Act
             bool result = await _manager.CreateAsync(testUser);
@@ -66,8 +46,8 @@ namespace ElgrosLibTester.ManagerTests
         /// </summary>
         /// <returns></returns>
         [Test]
-        [Order(3)]
-        public async Task GetByIdAsync_ReturnsAValidUser_IfArgumentsAreValid()
+        [Order(2)]
+        public async Task GetByNameAsync_ReturnsAValidUser_IfArgumentsAreValid()
         {
             //Arrange
             User requestedUser;
@@ -75,7 +55,7 @@ namespace ElgrosLibTester.ManagerTests
             await _manager.CreateAsync(testUser);
 
             //Act
-            requestedUser = await _manager.GetByIdAsync(testUser.Id);
+            requestedUser = await _manager.GetByNameAsync(testUser.Username);
 
             //Cleanup
             await _manager.DeleteAsync(testUser);
@@ -91,7 +71,7 @@ namespace ElgrosLibTester.ManagerTests
         /// </summary>
         /// <returns></returns>
         [Test]
-        [Order(4)]
+        [Order(3)]
         public async Task UpdateAsync_UpdatesExistingUser_IfArgumentsAreValid()
         {
             //Arrange
@@ -114,7 +94,7 @@ namespace ElgrosLibTester.ManagerTests
         /// </summary>
         /// <returns></returns>
         [Test]
-        [Order(5)]
+        [Order(4)]
         public async Task RemoveObjectAsync_RemovesExistingUser_IfArgumentsAreValid()
         {
             //Arrange
@@ -134,8 +114,9 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>User Object</returns>
         private User CreateTestUser()
         {
-            User testObject = UserFactory.CreateUser(1000, "Test User", "123");
-            return testObject;
+            User hashedUSer = _manager.ConvertToUser("test user", "123");
+            User testUser = UserFactory.CreateUser(1000, hashedUSer.Username, hashedUSer.Password);
+            return testUser;
         }
 
         /// <summary>
@@ -144,8 +125,9 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>User Object</returns>
         private User CreateUpdateTestUser()
         {
-            User testObject = UserFactory.CreateUser(1000, "Updated Test User", "321");
-            return testObject;
+            User hashedUser = _manager.ConvertToUser("updated test user", "321");
+            User testUser = UserFactory.CreateUser(1000, hashedUser.Username, hashedUser.Password);
+            return testUser;
         }
     }
 }
