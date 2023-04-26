@@ -150,7 +150,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>Category Object</returns>
         private Category CreateTestCategory()
         {
-            Category testObject = CategoryFactory.CreateCategory(1000, "Test Category");
+            Category testObject = _categoryManager.ConvertToCategory("Test Category", 1000);
             return testObject;
         }
 
@@ -160,7 +160,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>SubCategory Object</returns>
         private SubCategory CreateTestSubCategory()
         {
-            SubCategory testObject = SubCategoryFactory.CreateSubCategory(1000, "Test SubCategory", 1000);
+            SubCategory testObject = _manager.ConvertToSubCategory("Test SubCategory", 1000, 1000);
             return testObject;
         }
 
@@ -170,7 +170,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>SubCategory Object</returns>
         private SubCategory CreateUpdateTestSubCategory()
         {
-            SubCategory testObject = SubCategoryFactory.CreateSubCategory(1000, "Updated Test SubCategory", 1000);
+            SubCategory testObject = _manager.ConvertToSubCategory("Updated Test SubCategory", 1000, 1000);
             return testObject;
         }
     }

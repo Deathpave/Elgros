@@ -40,7 +40,7 @@ namespace ElgrosLib.Managers
             }
         }
 
-        public User ConvertToUser(string username, string password)
+        public User ConvertToUser(string username, string password, int id = 0)
         {
             try
             {

@@ -133,7 +133,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>UserInformation Object</returns>
         private User CreateTestUser()
         {
-            User testObject = UserFactory.CreateUser(1000, "Test User", "123");
+            User testObject = _UserManager.ConvertToUser("Test User", "123", 1000);
             return testObject;
         }
 
@@ -143,7 +143,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>UserInformation Object</returns>
         private UserInformation CreateTestUserInformation()
         {
-            UserInformation testObject = UserInformationFactory.CreateUserInformation(1000, "Test", "Testsen", "Test@Test.com", "TestGade", "4290", "TestBy", "12345678");
+            UserInformation testObject = _manager.ConvertToUserInformation(1000, "Test", "Testsen", "Test@Test.com", "TestGade", "4290", "TestBy", "12345678");
             return testObject;
         }
 
@@ -153,7 +153,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>UserInformation Object</returns>
         private UserInformation CreateUpdateTestUserInformation()
         {
-            UserInformation testObject = UserInformationFactory.CreateUserInformation(1000, "UpdatedTest", "UpdatedTestsen", "UpdatedTest@Test.com", "UpdatedTestGade", "4290", "UpdatedTestBy", "12345678");
+            UserInformation testObject = _manager.ConvertToUserInformation(1000, "UpdatedTest", "UpdatedTestsen", "UpdatedTest@Test.com", "UpdatedTestGade", "4290", "UpdatedTestBy", "12345678");
             return testObject;
         }
     }
