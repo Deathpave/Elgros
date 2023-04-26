@@ -233,10 +233,10 @@ BEGIN
 	IF(UserId IS NOT NULL OR 0) 
     THEN
 		INSERT INTO Users (id, username, password) 
-		VALUES (UserId, username, password);
+		VALUES (UserId, newUsername, newPassword);
     ELSE
 		INSERT INTO Users (username, password) 
-		VALUES (username, password);
+		VALUES (newUsername, newPassword);
 	END IF;   
 END //
 DELIMITER ;
@@ -338,7 +338,7 @@ BEGIN
     firstName = newFirstName,
     lastName = newLastName,
     email = newEmail,
-    address = newAdress,
+    address = newAddress,
     zipcode = newZipcode,
     city = newCity,
     phone = newPhone

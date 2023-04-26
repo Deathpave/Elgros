@@ -45,7 +45,7 @@ namespace ElgrosLib.Managers
             try
             {
                 Encryption encryption = new Encryption();
-                User user = UserFactory.CreateUser(0, encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
+                User user = UserFactory.CreateUser(id, encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
                 return user;
             }
             catch (Exception e)
@@ -172,6 +172,16 @@ namespace ElgrosLib.Managers
                     return null;
                 }
             }
+        }
+
+        public async Task<string> CreateUserToken(User user)
+        {
+            return new Encryption().EncryptString(user.Id.ToString(), "Id");
+        }
+
+        public async Task<int> GetUserIdFromUserToken(string token)
+        {
+            return int.Parse(new Decryption().DecryptString(token, "Id"));
         }
     }
 }
