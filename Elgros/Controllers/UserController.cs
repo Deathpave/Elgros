@@ -80,11 +80,16 @@ namespace Elgros.Controllers
             return View("Login");
         }
 
-        [HttpPost("login/confirm")]
+        [HttpPost("user/confirm")]
         public async Task<IActionResult> ConfirmLogin(string username,string password)
         {
-            _userManager.CheckLogin(username, password);
-            return View("Login");
+            //int userloggedin = await _userManager.CheckLogin(username, password);
+            //_userManager.
+            //if (userloggedin)
+            //{
+            //    _contextAccessor.HttpContext.Session.SetString("cart", updatedcart);
+            //}
+            //return RedirectToAction("cart");
         }
     }
 }

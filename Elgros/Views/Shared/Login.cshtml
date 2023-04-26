@@ -3,7 +3,7 @@
     ViewData["Title"] = "Login";
 }
 <div>
-    @using (Html.BeginForm("login/confirm", "user", FormMethod.Post))
+    @using (Html.BeginForm("confirm", "user", FormMethod.Post))
     {
         @Html.TextBoxFor(Model => Model.username);
         @Html.TextBoxFor(Model => Model.password);
