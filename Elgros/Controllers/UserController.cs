@@ -18,7 +18,7 @@ namespace Elgros.Controllers
             _productManager = productManager;
             _logger = logger;
             _contextAccessor = contextAccessor;
-            _userManager = userManager; 
+            _userManager = userManager;
         }
 
         [HttpGet("/cart")]
@@ -62,7 +62,7 @@ namespace Elgros.Controllers
                         cartcount++;
                     }
                 }
-                _contextAccessor.HttpContext.Session.SetInt32("cartcount",cartcount);
+                _contextAccessor.HttpContext.Session.SetInt32("cartcount", cartcount);
                 _contextAccessor.HttpContext.Session.SetString("cart", updatedcart);
             }
             return RedirectToAction("cart");
@@ -81,13 +81,19 @@ namespace Elgros.Controllers
         }
 
         [HttpPost("user/confirm")]
-        public async Task<IActionResult> ConfirmLogin(string username,string password)
+        public async Task<IActionResult> ConfirmLogin(string username, string password)
         {
-            int userid = await _userManager.CheckLogin(username, password);
-            string userlogintoken = _userManager.CreateUserToken(userid);
-            if (userloggedin)
+            try
             {
+                int userid = await _userManager.CheckLogin(username, password);
+                string userlogintoken = await _userManager.CreateUserToken(userid);
+
                 _contextAccessor.HttpContext.Session.SetString("tkn", userlogintoken);
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
             return RedirectToAction("cart");
         }
