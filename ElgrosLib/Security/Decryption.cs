@@ -39,7 +39,7 @@ namespace ElgrosLib.Security
             MemoryStream memoryStream = new MemoryStream();
             CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Write);
 
-            // Encrypt input as bytes
+            // Decrypt input as bytes
             byte[] inputBytes = Encoding.UTF8.GetBytes(input);
             cryptoStream.Write(inputBytes, 0, inputBytes.Length);
             cryptoStream.FlushFinalBlock();
