@@ -35,8 +35,9 @@ namespace ElgrosLib.Repositories
             command.CommandType = System.Data.CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",createEntity.Name},
-                {"@categoryId",createEntity.CategoryId}
+                {"@subCategoryId",createEntity.Id},
+                {"@newName",createEntity.Name},
+                {"@newCategoryId",createEntity.CategoryId}
             };
 
             // Get datareader with result from dbcommand
@@ -130,7 +131,7 @@ namespace ElgrosLib.Repositories
         public async Task<SubCategory> GetByIdAsync(int id)
         {
             // Create dbcommand
-            DbCommand command = new SqlCommand("spGetCategoryById");
+            DbCommand command = new SqlCommand("spGetSubCategoryById");
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
@@ -168,12 +169,13 @@ namespace ElgrosLib.Repositories
             int affectedRows = 0;
 
             // Create dbcommand
-            DbCommand command = new SqlCommand("spUpdateCategory");
+            DbCommand command = new SqlCommand("spUpdateSubCategory");
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",updateEntity.Name},
-                {"@categoryId",updateEntity.CategoryId}
+                {"@subCategoryId",updateEntity.Id},
+                {"@newName",updateEntity.Name},
+                {"@newCategoryId",updateEntity.CategoryId}
             };
 
             // Get datareader with result from the dbcommand

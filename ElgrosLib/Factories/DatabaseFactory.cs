@@ -7,7 +7,7 @@ namespace ElgrosLib.Factories
     /// <summary>
     /// Factory that handles the creation of IDatabase objects
     /// </summary>
-    public static class DatabaseFactory
+    internal static class DatabaseFactory
     {
         /// <summary>
         /// Creates a database instance
@@ -16,7 +16,7 @@ namespace ElgrosLib.Factories
         /// <param name="databaseName"></param>
         /// <param name="databaseType"></param>
         /// <returns>IDatabase</returns>
-        public static IDatabase CreateDatabase(IConfiguration configuration, string databaseName, DatabaseTypes databaseType)
+        internal static IDatabase CreateDatabase(IConfiguration configuration, string databaseName, DatabaseTypes databaseType)
         {
             IDatabase database = null;
             switch (databaseType)

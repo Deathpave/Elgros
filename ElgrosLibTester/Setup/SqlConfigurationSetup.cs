@@ -13,7 +13,7 @@ namespace ElgrosLibTester.Setup
             {
                 {
                     "ConnectionStrings:DefaultConnection",
-                    "Server=127.0.0.1;" +
+                    "Server=10.13.0.123;" +
                     "Database=elgrosdb;" +
                     "Uid=root;Pwd=123;"
                 },

@@ -26,11 +26,11 @@ namespace ElgrosLib.Security
             }
 
             // input bytes as salt
-            byte[] salt = Encoding.UTF8.GetBytes(input);
+            byte[] salt = Encoding.UTF8.GetBytes(decodingPassword);
             // Key and vector generator
             Rfc2898DeriveBytes rfc = new Rfc2898DeriveBytes(decodingPassword, salt);
 
-            // Create the Aes for encryptin
+            // Create the Aes for decryption
             Aes aes = Aes.Create();
             aes.Key = rfc.GetBytes(32);
             aes.IV = rfc.GetBytes(16);
@@ -39,14 +39,14 @@ namespace ElgrosLib.Security
             MemoryStream memoryStream = new MemoryStream();
             CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Write);
 
-            // Encrypt input as bytes
-            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            // Decrypt input as bytes
+            byte[] inputBytes = Convert.FromBase64String(input);
             cryptoStream.Write(inputBytes, 0, inputBytes.Length);
             cryptoStream.FlushFinalBlock();
             cryptoStream.Close();
 
             // Convert bytes to base64 string
-            string result = Convert.ToBase64String(memoryStream.ToArray());
+            string result = Encoding.UTF8.GetString(memoryStream.ToArray());
             return result;
         }
     }

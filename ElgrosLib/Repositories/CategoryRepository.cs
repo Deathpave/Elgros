@@ -36,7 +36,8 @@ namespace ElgrosLib.Repositories
             command.CommandType = System.Data.CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",createEntity.Name}
+                {"@categoryId",createEntity.Id},
+                {"@newName",createEntity.Name}
             };
 
             // Get datareader with result from dbcommand
@@ -168,7 +169,8 @@ namespace ElgrosLib.Repositories
             command.CommandType = CommandType.StoredProcedure;
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                {"@name",updateEntity.Name}
+                {"@categoryId",updateEntity.Id},
+                {"@newName",updateEntity.Name}
             };
 
             // Get datareader with result from the dbcommand

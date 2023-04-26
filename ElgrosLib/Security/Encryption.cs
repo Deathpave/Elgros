@@ -26,11 +26,11 @@ namespace ElgrosLib.Security
             }
 
             // input bytes as salt
-            byte[] salt = Encoding.UTF8.GetBytes(input);
+            byte[] salt = Encoding.UTF8.GetBytes(encodingPassword);
             // Key and vector generator
             Rfc2898DeriveBytes rfc = new Rfc2898DeriveBytes(encodingPassword, salt);
 
-            // Create the Aes for encryptin
+            // Create the Aes for encryption
             Aes aes = Aes.Create();
             aes.Key = rfc.GetBytes(32);
             aes.IV = rfc.GetBytes(16);
