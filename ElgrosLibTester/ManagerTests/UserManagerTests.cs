@@ -114,7 +114,7 @@ namespace ElgrosLibTester.ManagerTests
         /// <returns>User Object</returns>
         private User CreateTestUser()
         {
-            User testUser = _manager.ConvertToUser("test user", "123", 1000);
+            User testUser = _manager.ConvertToUser("haha", "hm", 50);
             return testUser;
         }
 

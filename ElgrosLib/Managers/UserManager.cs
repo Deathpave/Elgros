@@ -45,7 +45,7 @@ namespace ElgrosLib.Managers
             try
             {
                 Encryption encryption = new Encryption();
-                User user = UserFactory.CreateUser(0, encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
+                User user = UserFactory.CreateUser(id, encryption.EncryptString(username, username), new Hashing().Sha256Hash(encryption.EncryptString(password, password)));
                 return user;
             }
             catch (Exception e)

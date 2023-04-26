@@ -19,7 +19,7 @@ namespace ElgrosLib.Managers
         {
             try
             {
-                return SubCategoryFactory.CreateSubCategory(0, name, categoryId);
+                return SubCategoryFactory.CreateSubCategory(id, name, categoryId);
             }
             catch (Exception e)
             {
