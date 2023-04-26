@@ -1,9 +1,9 @@
-﻿@model Elgros.Models.GlobalModel
+﻿@model Elgros.Models.ProductModel
 @{
     ViewData["Title"] = "Produkter";
 }
 
-@foreach (var item in Model.productModel.Products)
+@foreach (var item in Model.Products)
 {
     if (item.Quantity < 1)
     {
