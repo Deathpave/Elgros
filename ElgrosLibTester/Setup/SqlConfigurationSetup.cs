@@ -1,12 +1,14 @@
 ﻿using ElgrosLib.Adapters;
 using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
+using ElgrosLib.Managers;
 using Microsoft.Extensions.Configuration;
 
 namespace ElgrosLibTester.Setup
 {
     internal class SqlConfigurationSetup
     {
+
         public static IDatabase SetupDB()
         {
             var inMemorySettings = new Dictionary<string, string?>
@@ -23,7 +25,9 @@ namespace ElgrosLibTester.Setup
                 .AddInMemoryCollection(inMemorySettings)
                 .Build();
 
-            var db = DatabaseFactory.CreateDatabase(config, "door2doordb", DatabaseTypes.MySql);
+            DatabaseManager _dbManager = new DatabaseManager();
+
+            IDatabase db = _dbManager.CreateDatabase(config, "door2doordb", DatabaseTypes.MySql);
 
             return db;
         }
