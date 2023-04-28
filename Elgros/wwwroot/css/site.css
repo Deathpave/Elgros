@@ -193,18 +193,16 @@ footer {
 /* Media design */
 
 @media only screen and (max-width: 600px) {
-    .toolbar {
-        display: none;
-    }
 
     .cartwrapper {
         display: flex;
         flex-direction: column;
+        float:left;
     }
 
     .itemwrapper {
         margin-bottom: 20px;
-        width: 100%;
+        width: 100vw;
     }
 
     .billingform {
@@ -217,8 +215,8 @@ footer {
 
     .icon {
         float: right;
-        width: 20px !important;
-        height: 20px !important;
+        width: 40px !important;
+        height: 40px !important;
     }
 
     #products {
