@@ -1,7 +1,5 @@
-using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Managers;
-using Microsoft.AspNetCore.Identity;
 
 namespace Elgros
 {
@@ -26,7 +24,7 @@ namespace Elgros
             DatabaseManager dbmanager = new DatabaseManager();
             var db = dbmanager.CreateDatabase(config, "elgrosdb", ElgrosLib.Adapters.DatabaseTypes.MySql);
 
-            // Manager dependency
+            // Manager dependency injections
             builder.Services.AddScoped<ICategoryManager, CategoryManager>(manager => new CategoryManager(db));
             builder.Services.AddScoped<IProductManager, ProductManager>(manager => new ProductManager(db));
             builder.Services.AddScoped<ISubCategoryManager, SubCategoryManager>(manager => new SubCategoryManager(db));
@@ -35,6 +33,7 @@ namespace Elgros
             builder.Services.AddScoped<ILogManager, LogManager>(manager => LogManager.GetLogManager(db));
 
             LogManager.GetLogManager(db, Environment.CurrentDirectory + "\\TestLogs.txt");
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
