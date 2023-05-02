@@ -13,12 +13,11 @@
 <body>
     <header>
         <div class="header">
-            <img class="logo" src="assets/elgros_logo_png.png" alt="">
+            <img class="logo" src="/assets/elgros_logo_png.png" alt="">
             <div class="toolbar">
-                @*<img class="icon" src="assets/support.png" alt="">*@
-                <img class="icon" src="assets/fast-delivery.png" alt="">
+                <img class="icon" src="/assets/fast-delivery.png" alt="">
                 <div style="display:flex; flex-direction:row;">
-                    <a href="/cart"><img class="icon" src="10.13.0.125/pictures/cart.png" alt=""></a>
+                    <a href="/cart"><img class="icon" src="~/assets/cart.png" alt=""></a>
                     @if (context.HttpContext.Session.Keys.Contains("cartcount"))
                     {
                         <a style="margin-left: -30px; color:white; font-weight:bold;"> @context.HttpContext.Session.GetInt32("cartcount").ToString()</a>

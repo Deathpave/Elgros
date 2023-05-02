@@ -68,7 +68,7 @@ namespace Elgros.Controllers
             return RedirectToAction("cart");
         }
 
-        [HttpGet("/cart/orderconfirmed")]
+        [HttpPost("/cart/orderconfirmed")]
         public async Task<IActionResult> OrderConfirmed()
         {
             return View("OrderConfirmed");

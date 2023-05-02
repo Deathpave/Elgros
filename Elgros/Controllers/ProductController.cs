@@ -21,11 +21,10 @@ namespace Elgros.Controllers
         }
 
         [HttpGet("/products")]
-        public async Task<IActionResult> Products(ProductModel productmodel)
+        public async Task<IActionResult> Products()
         {
-            productmodel.Products = await _productManager.GetAllAsync();
-            GlobalModel model = new GlobalModel();
-            model.productModel = productmodel;
+            ProductModel model = new ProductModel(await _productManager.GetAllAsync());
+            //model.productModel = productmodel;
             return View("Products", model);
         }
 
