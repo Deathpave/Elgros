@@ -1,11 +1,13 @@
 ﻿using ElgrosLib.DataModels;
-using ElgrosLib.Factories;
 using ElgrosLib.Interfaces;
 using ElgrosLib.Managers;
 using ElgrosLibTester.Setup;
 
 namespace ElgrosLibTester.ManagerTests
 {
+    /// <summary>
+    /// Testing class for the UserInformationManager's class methods
+    /// </summary>
     internal class UserInformationManagerTests
     {
         private IUserInformationManager _manager;
@@ -19,7 +21,7 @@ namespace ElgrosLibTester.ManagerTests
             _UserManager = new UserManager(db);
         }
 
-                /// <summary>
+        /// <summary>
         /// Tests the CreateAsync method of the UserInformationManager class
         /// </summary>
         /// <returns></returns>

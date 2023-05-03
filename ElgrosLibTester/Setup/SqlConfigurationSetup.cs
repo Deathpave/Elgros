@@ -6,9 +6,15 @@ using Microsoft.Extensions.Configuration;
 
 namespace ElgrosLibTester.Setup
 {
+    /// <summary>
+    /// Class for creating a database connection for all test classes
+    /// </summary>
     internal class SqlConfigurationSetup
     {
-
+        /// <summary>
+        /// Class for creating a database object for testing
+        /// </summary>
+        /// <returns>IDatabase</returns>
         public static IDatabase SetupDB()
         {
             var inMemorySettings = new Dictionary<string, string?>
