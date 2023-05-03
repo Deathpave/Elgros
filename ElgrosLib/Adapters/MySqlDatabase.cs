@@ -7,6 +7,9 @@ using MySql.Data.MySqlClient;
 
 namespace ElgrosLib.Adapters
 {
+    /// <summary>
+    /// Database class for handling MySqlDatabase specific actions
+    /// </summary>
     internal class MySqlDatabase : Database
     {
         public MySqlDatabase(IConfiguration configuration, string databaseName) : base(configuration, databaseName)

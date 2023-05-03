@@ -7,6 +7,9 @@ using System.Data.Common;
 
 namespace ElgrosLib.Adapters
 {
+    /// <summary>
+    /// Abstract class for all databases
+    /// </summary>
     internal abstract class Database : IDatabase
     {
         private readonly IConfiguration _configuration;

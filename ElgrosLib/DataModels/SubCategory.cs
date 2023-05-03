@@ -1,5 +1,8 @@
 ﻿namespace ElgrosLib.DataModels
 {
+    /// <summary>
+    /// POGO class for a SubCategory
+    /// </summary>
     public class SubCategory : BaseEntity
     {
         private string _name;

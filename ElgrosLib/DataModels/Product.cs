@@ -1,5 +1,8 @@
 ﻿namespace ElgrosLib.DataModels
 {
+    /// <summary>
+    /// POGO class for a Product
+    /// </summary>
     public class Product : BaseEntity
     {
         private string _name;

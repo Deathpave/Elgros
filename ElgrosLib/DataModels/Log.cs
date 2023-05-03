@@ -3,6 +3,9 @@ using ElgrosLib.Logs;
 
 namespace ElgrosLib.DataModels
 {
+    /// <summary>
+    /// POGO class for a Log
+    /// </summary>
     public class Log : BaseEntity, ILog
     {
         private readonly string _message;

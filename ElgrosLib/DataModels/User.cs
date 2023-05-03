@@ -1,5 +1,8 @@
 ﻿namespace ElgrosLib.DataModels
 {
+    /// <summary>
+    /// POGO class for a User
+    /// </summary>
     public class User : BaseEntity
     {
         private string _username;

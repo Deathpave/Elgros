@@ -1,5 +1,8 @@
 ﻿namespace ElgrosLib.DataModels
 {
+    /// <summary>
+    /// Pogo class for a Category
+    /// </summary>
     public class Category : BaseEntity
     {
         private string _name;

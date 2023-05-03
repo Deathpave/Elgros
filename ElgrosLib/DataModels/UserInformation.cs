@@ -1,5 +1,8 @@
 ﻿namespace ElgrosLib.DataModels
 {
+    /// <summary>
+    /// POGO class for more detailed information surrounding a user
+    /// </summary>
     public class UserInformation : BaseEntity
     {
         private string _firstName;
