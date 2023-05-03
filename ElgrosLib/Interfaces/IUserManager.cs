@@ -2,6 +2,9 @@
 
 namespace ElgrosLib.Interfaces
 {
+    /// <summary>
+    /// Interface for UserManager class, meant to transfer CRUD methods
+    /// </summary>
     public interface IUserManager : IManager<User>
     {
         public Task<int> CheckLogin(string username, string password);
