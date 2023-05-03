@@ -15,8 +15,15 @@
         <div class="header">
             <img class="logo" src="/assets/elgros_logo_png.png" alt="">
             <div class="toolbar">
-                <img class="icon" src="/assets/fast-delivery.png" alt="">
+                @*<img class="icon" src="/assets/fast-delivery.png" alt="">*@
                 <div style="display:flex; flex-direction:row;">
+                    @if (!context.HttpContext.Session.Keys.Contains("tkn"))
+                    {
+                        <button onclick="location.href = '/login'">Login</button>
+                        
+                    }else{
+                        <button onclick="location.href = '/logud'">Log ud</button>
+                    }
                     <a href="/cart"><img class="icon" src="~/assets/cart.png" alt=""></a>
                     @if (context.HttpContext.Session.Keys.Contains("cartcount"))
                     {

@@ -80,6 +80,13 @@ namespace Elgros.Controllers
             return View("Login");
         }
 
+        [HttpGet("/logud")]
+        public async Task<IActionResult> Logud()
+        {
+            _contextAccessor.HttpContext.Session.SetString("tkn", "");
+            return View("Login");
+        }
+
         [HttpPost("user/confirm")]
         public async Task<IActionResult> ConfirmLogin(string username, string password)
         {
