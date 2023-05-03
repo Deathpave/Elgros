@@ -7,6 +7,9 @@ using System.Data.SqlClient;
 
 namespace ElgrosLib.Repositories
 {
+    /// <summary>
+    /// Repository class for handling database calls for Category objects
+    /// </summary>
     internal class CategoryRepository : ICategoryRepository
     {
         // Database instance

@@ -7,6 +7,9 @@ using System.Data.SqlClient;
 
 namespace ElgrosLib.Repositories
 {
+    /// <summary>
+    /// Repository class for handling database calls for product objects
+    /// </summary>
     internal class ProductRepository : IProductRepository
     {
         // Database instance

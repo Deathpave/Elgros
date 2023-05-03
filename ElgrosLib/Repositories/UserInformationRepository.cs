@@ -7,6 +7,9 @@ using ElgrosLib.Factories;
 
 namespace ElgrosLib.Repositories
 {
+    /// <summary>
+    /// Repository class for handling database calls for UserInformation objects
+    /// </summary>
     internal class UserInformationRepository : IUserInformationRepository
     {
         private readonly IDatabase _database;
