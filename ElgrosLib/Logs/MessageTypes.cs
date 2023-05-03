@@ -1,5 +1,8 @@
 ﻿namespace ElgrosLib.Logs
 {
+    /// <summary>
+    /// Different types of Log messages
+    /// </summary>
     public enum MessageTypes
     {
         Error = 1,
