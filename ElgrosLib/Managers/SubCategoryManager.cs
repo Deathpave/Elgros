@@ -6,6 +6,9 @@ using ElgrosLib.Logs;
 
 namespace ElgrosLib.Managers
 {
+    /// <summary>
+    /// Manager class for handling SubCategory objects
+    /// </summary>
     public class SubCategoryManager : ISubCategoryManager
     {
         private readonly SubCategoryRepository _repository;
@@ -15,6 +18,13 @@ namespace ElgrosLib.Managers
             _repository = new SubCategoryRepository(database);
         }
 
+        /// <summary>
+        /// Converts variables into a SubCategory object
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="categoryId"></param>
+        /// <param name="id"></param>
+        /// <returns>SubCategory</returns>
         public SubCategory ConvertToSubCategory(string name, int categoryId, int id = 0)
         {
             try
@@ -38,6 +48,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Saves a SubCategory object to the database
+        /// </summary>
+        /// <param name="createEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> CreateAsync(SubCategory createEntity)
         {
             try
@@ -61,6 +76,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Deletes a SubCategory entity from the database
+        /// </summary>
+        /// <param name="deleteEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> DeleteAsync(SubCategory deleteEntity)
         {
             try
@@ -84,6 +104,10 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Gets all SubCategory entities from the databse
+        /// </summary>
+        /// <returns>IEnumerable with all SubCategories</returns>
         public Task<IEnumerable<SubCategory>> GetAllAsync()
         {
             try
@@ -107,6 +131,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Gets a specific SubCategory entity from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>SubCategory</returns>
         public Task<SubCategory> GetByIdAsync(int id)
         {
             try
@@ -130,6 +159,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Updates a SubCategory entity in the database
+        /// </summary>
+        /// <param name="updateEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> UpdateAsync(SubCategory updateEntity)
         {
             try
@@ -153,6 +187,10 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Logs an error locally in case of a missing database connection
+        /// </summary>
+        /// <param name="exception"></param>
         public void LogErrorLocally(Exception exception)
         {
             LogManager.GetLogManager(null).CreateAsync(

@@ -7,6 +7,9 @@ using ElgrosLib.Logs;
 
 namespace ElgrosLib.Managers
 {
+    /// <summary>
+    /// Manager class for handling UserInformation objects
+    /// </summary>
     public class UserInformationManager : IUserInformationManager
     {
         private readonly UserInformationRepository _repository;
@@ -16,6 +19,18 @@ namespace ElgrosLib.Managers
             _repository = new UserInformationRepository(database);
         }
 
+        /// <summary>
+        /// Converts variables into a UserInformation object
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="name"></param>
+        /// <param name="lastname"></param>
+        /// <param name="email"></param>
+        /// <param name="address"></param>
+        /// <param name="zipcode"></param>
+        /// <param name="city"></param>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         public UserInformation ConvertToUserInformation(int userId, string name, string lastname, string email, string address, string zipcode, string city, string phone)
         {
             try
@@ -43,6 +58,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Saves a UserInformation entity to the database
+        /// </summary>
+        /// <param name="createEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> CreateAsync(UserInformation createEntity)
         {
             try
@@ -66,6 +86,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Deletes a UserInformation entity from the database
+        /// </summary>
+        /// <param name="deleteEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> DeleteAsync(UserInformation deleteEntity)
         {
             try
@@ -89,11 +114,20 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Gets all UserInformation entities from the database
+        /// </summary>
+        /// <returns>IEnumerable with all UserInformations</returns>
         public Task<IEnumerable<UserInformation>> GetAllAsync()
         {
             return null;
         }
 
+        /// <summary>
+        /// Gets a specific UserInformation entity from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Task<UserInformation> GetByIdAsync(int id)
         {
             try
@@ -123,6 +157,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Updates a UserInformation entity in the database
+        /// </summary>
+        /// <param name="updateEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> UpdateAsync(UserInformation updateEntity)
         {
             try
@@ -146,6 +185,10 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Logs error locally in case of missing database connection
+        /// </summary>
+        /// <param name="exception"></param>
         public void LogErrorLocally(Exception exception)
         {
             LogManager.GetLogManager(null).CreateAsync(

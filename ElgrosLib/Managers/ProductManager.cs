@@ -6,6 +6,9 @@ using ElgrosLib.Logs;
 
 namespace ElgrosLib.Managers
 {
+    /// <summary>
+    /// Manager class for handling Product objects
+    /// </summary>
     public class ProductManager : IProductManager
     {
         private readonly ProductRepository _repository;
@@ -17,6 +20,18 @@ namespace ElgrosLib.Managers
             _repository = new ProductRepository(database);
         }
 
+        /// <summary>
+        /// Converts variables to a Product object
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="price"></param>
+        /// <param name="quantity"></param>
+        /// <param name="photoUrl"></param>
+        /// <param name="categoryId"></param>
+        /// <param name="subCategoryId"></param>
+        /// <param name="id"></param>
+        /// <returns>Product</returns>
         public Product ConvertToProduct(string name, string description, double price, int quantity, string photoUrl, int categoryId, int subCategoryId, int id = 0)
         {
             try
@@ -40,6 +55,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Saves a Product entity to the database
+        /// </summary>
+        /// <param name="createEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> CreateAsync(Product createEntity)
         {
             try
@@ -63,6 +83,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Deletes a Product entity from the database
+        /// </summary>
+        /// <param name="deleteEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> DeleteAsync(Product deleteEntity)
         {
             try
@@ -86,6 +111,10 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Gets all Product entities from the database
+        /// </summary>
+        /// <returns>IEnumerable with all Products</returns>
         public Task<IEnumerable<Product>> GetAllAsync()
         {
             try
@@ -118,6 +147,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Gets a specific Product entity from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Product</returns>
         public Task<Product> GetByIdAsync(int id)
         {
             try
@@ -141,6 +175,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Updates a Product entity in the database
+        /// </summary>
+        /// <param name="updateEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> UpdateAsync(Product updateEntity)
         {
             try
@@ -164,6 +203,10 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Logs an error locally in case of a missing database connection
+        /// </summary>
+        /// <param name="exception"></param>
         public void LogErrorLocally(Exception exception)
         {
             LogManager.GetLogManager(null).CreateAsync(

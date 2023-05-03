@@ -7,6 +7,9 @@ using ElgrosLib.Security;
 
 namespace ElgrosLib.Managers
 {
+    /// <summary>
+    /// Manager class for handling User objects
+    /// </summary>
     public class UserManager : IUserManager
     {
         private readonly UserRepository _repository;
@@ -16,6 +19,12 @@ namespace ElgrosLib.Managers
             _repository = new UserRepository(database);
         }
 
+        /// <summary>
+        /// Checks a login attempt
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns>user id</returns>
         public async Task<int> CheckLogin(string username, string password)
         {
             Encryption encryption = new Encryption();
@@ -40,6 +49,13 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Converts variables into a User object
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public User ConvertToUser(string username, string password, int id = 0)
         {
             try
@@ -65,6 +81,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Saves a User entity to the database
+        /// </summary>
+        /// <param name="createEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> CreateAsync(User createEntity)
         {
             try
@@ -88,6 +109,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Deletes a User entity from the database
+        /// </summary>
+        /// <param name="deleteEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> DeleteAsync(User deleteEntity)
         {
             try
@@ -111,16 +137,30 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Gets all user entities from the database
+        /// </summary>
+        /// <returns>IEnumerable with all Users</returns>
         public Task<IEnumerable<User>> GetAllAsync()
         {
             return null;
         }
 
+        /// <summary>
+        /// Gets a specific User entity from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>User</returns>
         public Task<User> GetByIdAsync(int id)
         {
             return null;
         }
 
+        /// <summary>
+        /// Updates a User entity in the database
+        /// </summary>
+        /// <param name="updateEntity"></param>
+        /// <returns></returns>
         public Task<bool> UpdateAsync(User updateEntity)
         {
             try
@@ -144,6 +184,10 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Logs an error locally in case of missing database connection
+        /// </summary>
+        /// <param name="exception"></param>
         public void LogErrorLocally(Exception exception)
         {
             LogManager.GetLogManager(null).CreateAsync(
@@ -151,6 +195,11 @@ namespace ElgrosLib.Managers
                    MessageTypes.Error, $"UserManager could not write log to database\n{exception.Message}", LogTypes.File).Result);
         }
 
+        /// <summary>
+        /// Gets a specific User entity from the database
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>User</returns>
         public async Task<User> GetByNameAsync(string name)
         {
             try
@@ -174,11 +223,21 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Creates a token for User sessions
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Token String</returns>
         public async Task<string> CreateUserToken(int id)
         {
             return new Encryption().EncryptString(id.ToString(), "Id");
         }
 
+        /// <summary>
+        /// Gets the ID of a User from their UserToken
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns>User Id</returns>
         public async Task<int> GetUserIdFromUserToken(string token)
         {
             return int.Parse(new Decryption().DecryptString(token, "Id"));

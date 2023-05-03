@@ -6,6 +6,9 @@ using ElgrosLib.Logs;
 
 namespace ElgrosLib.Managers
 {
+    /// <summary>
+    /// Manager class for handling Category objects
+    /// </summary>
     public class CategoryManager : ICategoryManager
     {
         private readonly CategoryRepository _repository;
@@ -15,6 +18,12 @@ namespace ElgrosLib.Managers
             _repository = new CategoryRepository(database);
         }
 
+        /// <summary>
+        /// Converts variables into an object
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns>Category</returns>
         public Category ConvertToCategory(string name, int id = 0)
         {
             try
@@ -38,6 +47,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Saves a new Category entity in the database
+        /// </summary>
+        /// <param name="createEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> CreateAsync(Category createEntity)
         {
             try
@@ -62,6 +76,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Deletes a Category entity from the database
+        /// </summary>
+        /// <param name="deleteEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> DeleteAsync(Category deleteEntity)
         {
             try
@@ -86,6 +105,10 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Gets all Category entities from the database
+        /// </summary>
+        /// <returns>IEnumerable with all Categories</returns>
         public Task<IEnumerable<Category>> GetAllAsync()
         {
             try
@@ -114,6 +137,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Gets a specific Category entity from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Category</returns>
         public Task<Category> GetByIdAsync(int id)
         {
             try
@@ -137,6 +165,11 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Updates a Category entity in the database
+        /// </summary>
+        /// <param name="updateEntity"></param>
+        /// <returns>True or False</returns>
         public Task<bool> UpdateAsync(Category updateEntity)
         {
             try
@@ -160,6 +193,10 @@ namespace ElgrosLib.Managers
             }
         }
 
+        /// <summary>
+        /// Method for creating a local log incase of missing database connection
+        /// </summary>
+        /// <param name="exception"></param>
         public void LogErrorLocally(Exception exception)
         {
             LogManager.GetLogManager(null).CreateAsync(
