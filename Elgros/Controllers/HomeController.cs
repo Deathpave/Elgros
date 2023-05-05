@@ -4,6 +4,9 @@ using System.Diagnostics;
 
 namespace Elgros.Controllers
 {
+    /// <summary>
+    /// Controller for home endpoints
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly IHttpContextAccessor _contextAccessor;

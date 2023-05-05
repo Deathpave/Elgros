@@ -1,6 +1,8 @@
 ﻿namespace Elgros.Models
 {
-
+    /// <summary>
+    /// UserModel with needed data for views
+    /// </summary>
     public class UserModel
     {
         public int userid { get; set; }

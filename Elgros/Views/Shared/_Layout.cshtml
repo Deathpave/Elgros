@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/site.css">
     <script type="text/javascript" src="/js/site.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>@ViewData["Title"] - Elgros</title>
 </head>
 <body>
@@ -15,7 +14,6 @@
         <div class="header">
             <img class="logo" src="/assets/elgros_logo_png.png" alt="">
             <div class="toolbar">
-                @*<img class="icon" src="/assets/fast-delivery.png" alt="">*@
                 <div style="display:flex; flex-direction:row;">
                     @if (!context.HttpContext.Session.Keys.Contains("tkn"))
                     {
@@ -38,24 +36,24 @@
             <div class="dropdown">
                 <a>Led</a>
                 <div class="dropdown-content">
-                    <a href="#">Led Pærer</a>
-                    <a href="#">Led Spots</a>
-                    <a href="#">Led Lysdæmpere</a>
+                    <a href="/products">Led Pærer</a>
+                    <a href="/products">Led Spots</a>
+                    <a href="/products">Led Lysdæmpere</a>
                 </div>
             </div>
             <div class="dropdown">
                 <a>Belysning</a>
                 <div class="dropdown-content">
-                    <a href="#">Lyskilder</a>
-                    <a href="#">Indbygningsspots</a>
+                    <a href="/products">Lyskilder</a>
+                    <a href="/products">Indbygningsspots</a>
                 </div>
             </div>
             <div class="dropdown">
                 <a>Kabler</a>
                 <div class="dropdown-content">
-                    <a href="#">Netværkskabel</a>
-                    <a href="#">Telefonkable</a>
-                    <a href="#">Højtalerledning</a>
+                    <a href="/products">Netværkskabel</a>
+                    <a href="/products">Telefonkable</a>
+                    <a href="/products">Højtalerledning</a>
                 </div>
             </div>
         </div>

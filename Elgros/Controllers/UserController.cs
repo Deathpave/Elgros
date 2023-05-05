@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace Elgros.Controllers
 {
+    /// <summary>
+    /// Controller for user endpoints
+    /// </summary>
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
@@ -20,12 +23,16 @@ namespace Elgros.Controllers
             _contextAccessor = contextAccessor;
             _userManager = userManager;
         }
-
+        /// <summary>
+        /// Displays cart
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("/cart")]
         public async Task<IActionResult> Cart()
         {
             List<Product> ProductList = new List<Product>();
             ProductModel datamodel = new ProductModel(ProductList);
+
             if (_contextAccessor.HttpContext.Session.Keys.Contains("cart"))
             {
                 string productstring = _contextAccessor.HttpContext.Session.GetString("cart");
@@ -45,13 +52,19 @@ namespace Elgros.Controllers
             return View("Cart", datamodel);
         }
 
+        /// <summary>
+        /// Removes specific cart item from cart session data
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         [HttpPost("/cart/removeitem")]
         public async Task<IActionResult> RemoveItemFromCart(int item)
         {
             string cartstring = _contextAccessor.HttpContext.Session.GetString("cart");
-            List<string> cartids = cartstring.Split(",").ToList();
             string updatedcart = string.Empty;
             int cartcount = 0;
+
+            List<string> cartids = cartstring.Split(",").ToList();
             if (cartids.Count > 0)
             {
                 foreach (string cartid in cartids)
@@ -68,25 +81,40 @@ namespace Elgros.Controllers
             return RedirectToAction("cart");
         }
 
+        /// <summary>
+        /// Displays order confirmed page
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("/cart/orderconfirmed")]
         public async Task<IActionResult> OrderConfirmed()
         {
             return View("OrderConfirmed");
         }
-
+        /// <summary>
+        /// Displays login page
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("/login")]
         public async Task<IActionResult> Login()
         {
             return View("Login");
         }
-
+        /// <summary>
+        /// Clears session from current user login
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("/logud")]
         public async Task<IActionResult> Logud()
         {
-            _contextAccessor.HttpContext.Session.SetString("tkn", "");
+            _contextAccessor.HttpContext.Session.Clear();
             return View("Login");
         }
-
+        /// <summary>
+        /// Get valid token if user login is true
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpPost("user/confirm")]
         public async Task<IActionResult> ConfirmLogin(string username, string password)
         {
@@ -94,13 +122,11 @@ namespace Elgros.Controllers
             {
                 int userid = await _userManager.CheckLogin(username, password);
                 string userlogintoken = await _userManager.CreateUserToken(userid);
-
                 _contextAccessor.HttpContext.Session.SetString("tkn", userlogintoken);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                _logger.LogError(e,null);
             }
             return RedirectToAction("cart");
         }

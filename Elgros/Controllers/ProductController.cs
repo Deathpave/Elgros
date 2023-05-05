@@ -7,6 +7,9 @@ using MySqlX.XDevAPI;
 
 namespace Elgros.Controllers
 {
+    /// <summary>
+    /// Controller for product endpoints
+    /// </summary>
     public class ProductController : Controller
     {
         private readonly IProductManager _productManager;
@@ -20,14 +23,22 @@ namespace Elgros.Controllers
             _contextAccessor = contextAccessor;
         }
 
+        /// <summary>
+        /// Show all products
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("/products")]
         public async Task<IActionResult> Products()
         {
             ProductModel model = new ProductModel(await _productManager.GetAllAsync());
-            //model.productModel = productmodel;
             return View("Products", model);
         }
 
+        /// <summary>
+        /// Save specific item to cart
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         [HttpPost("/products/saveitem")]
         public async Task<IActionResult> AddItemToCart(int item)
         {
@@ -38,7 +49,6 @@ namespace Elgros.Controllers
             {
                 int cartcount = (int)_contextAccessor.HttpContext.Session.GetInt32("cartcount");
                 _contextAccessor.HttpContext.Session.SetInt32("cartcount", cartcount + 1);
-
             }
             catch (Exception)
             {

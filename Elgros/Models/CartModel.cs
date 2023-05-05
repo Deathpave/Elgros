@@ -2,6 +2,9 @@
 
 namespace Elgros.Models
 {
+    /// <summary>
+    /// CartModel with needed cart data
+    /// </summary>
     public class CartModel
     {
         public Product product { get; set; }
